@@ -27,6 +27,9 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11
     devDependencies:
+      '@iconify-json/cib':
+        specifier: ^1.2.2
+        version: 1.2.2
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -235,6 +238,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/cib@1.2.2':
+    resolution: {integrity: sha512-WevYDdIm0x3I3YZyoIgdSu4uurbzs2b2gsMLUj8/EMKMoPIx6GF+t0VcaCgFY4a0rIdUY18MYP6m9XgcOhOtFg==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -2253,6 +2259,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.5':
     optional: true
+
+  '@iconify-json/cib@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/mdi@1.2.3':
     dependencies:
