@@ -1,0 +1,20 @@
+---
+interface Props {
+    name: string;
+    redirect: string;
+    selected?: boolean;
+}
+
+const { name, redirect, selected } = Astro.props;
+
+console.log(`${name} ${selected}`);
+// class="relative z-50 flex w-full cursor-pointer items-center justify-center py-5 transition-all ease-in-out hover:backdrop-brightness-75 lg:h-auto lg:w-auto lg:px-6 border-white"
+---
+
+<li class="relative z-50 mx-1 my-3 w-full lg:w-auto">
+    <a
+        class="flex w-full justify-center rounded-md border-1 border-neutral-600 px-4 py-2 duration-150 ease-in-out hover:backdrop-brightness-200"
+        href={redirect}
+        class:list={[{ "backdrop-brightness-200": selected }]}>{name}</a
+    >
+</li>

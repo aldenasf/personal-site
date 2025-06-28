@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+import colors from "../scripts/colors.json";
+interface Props {
+    author: "AlkaUtilities" | "aldenasf";
+    repo: string;
+    description: string;
+    language: string;
+    url: string;
+}
+
+const { author, repo, description, language, url } = Astro.props;
+
+let avatar;
+
+if (author == "AlkaUtilities") {
+    avatar = "https://avatars.githubusercontent.com/u/116571807?s=200&v=4";
+} else if (author == "aldenasf") {
+    avatar = "https://avatars.githubusercontent.com/u/63831735?v=4";
+}
+
+let color;
+
+if (colors.hasOwnProperty(language)) {
+    color = (colors as any)[language].color;
+} else {
+    color = "#ffffff"; // Default color if language is not found
+}
+---
+
+<a
+    class="flex flex-col rounded-md border-1 border-neutral-600 bg-neutral-800 p-5 duration-150 ease-in-out hover:bg-neutral-600"
+    href={url}
+>
+    <div class="flex flex-row items-center">
+        <img class="mr-2 max-h-5 max-w-5 rounded-sm" src={avatar} />
+        <p class="text-md">{author}</p>
+        <Icon class="ml-auto text-2xl" name="mdi:arrow-top-right" />
+    </div>
+    <div class="my-1 flex flex-col items-start">
+        <p class="text-lg font-bold">{repo}</p>
+        <p class="text-sm">{description}</p>
+    </div>
+    <div class="mt-auto flex flex-row items-center">
+        <div class="mr-2 block h-4 w-4 rounded-sm" style={{ backgroundColor: color }}></div>
+        <p>{language}</p>
+    </div>
+</a>

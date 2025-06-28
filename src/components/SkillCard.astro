@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+    text: string;
+    url?: string;
+    icon?: string | ImageMetadata;
+    rating?: 1 | 2 | 3;
+}
+
+const { text, url, icon, rating } = Astro.props;
+---
+
+<a
+    href={url}
+    class="flex flex-col items-center rounded-md border-1 px-3 py-2 text-lg font-medium duration-150 ease-in-out"
+    class:list={[
+        { "border-neutral-500 bg-neutral-700 hover:bg-neutral-500": rating == undefined },
+        { "border-red-800 bg-red-950 hover:bg-red-800": rating === 1 },
+        { "border-yellow-800 bg-yellow-950 hover:bg-yellow-800": rating === 2 },
+        { "border-green-800 bg-green-950 hover:bg-green-800": rating === 3 },
+    ]}
+    ><div class="flex flex-row items-center">
+        {
+            icon && typeof icon !== "string" ? (
+                <Image src={icon} alt={text} width={20} height={20} class="mr-2 h-5 w-5 rounded-xs" />
+            ) : icon && typeof icon === "string" ? (
+                <img src={icon} alt={text} class="mr-2 h-5 w-5 rounded-xs" />
+            ) : null
+        }
+        <span>{text}</span>
+    </div>
+    <!-- {
+        rating !== undefined && (
+            <div
+                class="flex h-0.5 w-full rounded-lg"
+                class:list={[
+                    { "bg-red-800": rating === 1 },
+                    { "bg-yellow-800": rating === 2 },
+                    { "bg-green-800": rating === 3 },
+                ]}
+            />
+        )
+    } -->
+</a>
