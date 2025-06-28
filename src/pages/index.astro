@@ -1,11 +1,221 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import color from "../scripts/colors.json";
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SkillContainer from "../components/SkillContainer.astro";
+import SkillCard from "../components/SkillCard.astro";
+import SocialCard from "../components/SocialCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import dockerLogo from "../assets/icons/docker.svg";
+import mongodbLogo from "../assets/icons/mongodb.svg";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
-	<Welcome />
+    <div class="mx-auto my-10 flex max-w-4xl flex-col justify-center">
+        <h1 class="text-3xl font-bold">hi, i'm <span class="text-red-400">alden!</span></h1>
+        <p class="text-neutral-200">
+            15-year-old self-taught developer from <span class="text-red-400">Indonesia</span>.
+        </p>
+        <hr class="my-8" />
+        <h2 id="about-me" class="mr-6 pb-6 text-2xl font-semibold">About Me</h2>
+        <section class="mb-4 rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
+            <p class="text-lg">
+                I am a highschool student who likes to code in my free time. I mostly do backend stuff like Discord bots
+                but I also sometimes do frontend stuff like this! Most of my projects go unfinished because I get bored
+                of them easily or I don't have the time to continue them so they never get published.
+            </p>
+        </section>
+        <section class="flex flex-row gap-4">
+            <div class="mb-4 flex w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
+                <div class="flex items-center space-x-2">
+                    <Icon class="text-xl" name="mdi:clock" />
+                    <span class="text-neutral-500">UTC+7</span><span id="clock" class=""></span>
+                </div>
+            </div>
+            <div class="mb-4 flex w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
+                <div class="flex items-center space-x-2">
+                    <Icon class="text-xl" name="mdi:calendar" />
+                    <span id="date" class=""></span>
+                </div>
+            </div>
+            <a
+                href="https://aldenasf.github.io/blog"
+                class="mb-4 flex w-1/3 justify-between rounded-md border-1 border-rose-600 bg-rose-950 p-3 duration-150 ease-in-out hover:bg-rose-700"
+            >
+                <div class="flex items-center space-x-2">
+                    <Icon class="text-xl" name="mdi:document" /><span>Blog</span>
+                </div>
+
+                <Icon class="text-xl" name="mdi:arrow-top-right" />
+            </a>
+        </section>
+        <h2 id="socials" class="mr-6 py-6 text-2xl font-semibold">Socials</h2>
+        <section class="grid grid-cols-3 gap-4">
+            <SocialCard platform="GitHub" username="aldenasf" url="https://github.com/aldenasf">
+                <Icon class="mr-2 text-2xl" name="fa6-brands:github" />
+            </SocialCard>
+            <SocialCard platform="Discord" username="aldenasf" url="https://discord.com/users/529424782438170679">
+                <Icon class="mr-2 text-2xl" name="fa6-brands:discord" />
+            </SocialCard>
+            <SocialCard platform="X" username="aldenasf" url="https://x.com/aldenasf">
+                <Icon class="mr-2 text-2xl" name="fa6-brands:x-twitter" />
+            </SocialCard>
+        </section>
+        <h2 id="projects" class="mr-6 py-6 text-2xl font-semibold">Projects</h2>
+        <section class="grid grid-cols-2 gap-4">
+            <ProjectCard
+                author="AlkaUtilities"
+                repo="metal-pipe-player"
+                description="A Discord bot that repeatedly plays an audio file in a random interval"
+                language="JavaScript"
+                url="https://github.com/AlkaUtilities/metal-pipe-player"
+            />
+            <ProjectCard
+                author="aldenasf"
+                repo="blog"
+                description="personal blog"
+                language="Astro"
+                url="https://github.com/aldenasf/blog"
+            />
+            <ProjectCard
+                author="AlkaUtilities"
+                repo="carbon"
+                description="silly general purpose discord bot"
+                language="TypeScript"
+                url="https://github.com/AlkaUtilities/carbon"
+            />
+            <ProjectCard
+                author="aldenasf"
+                repo="unicode-spoofer"
+                description="A website to replaces regular letters with visually similar alternatives"
+                language="JavaScript"
+                url="https://github.com/aldenasf/unicode-spoofer"
+            />
+        </section>
+        <div id="tech-stack" class="align-center flex flex-row">
+            <h2 class="mr-6 py-6 text-2xl font-semibold">Tech Stack</h2>
+            <div class="flex flex-row items-center">
+                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-green-800"></div><p class="mr-4">Comfortable</p>
+            </div>
+            <div class="flex flex-row items-center">
+                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-yellow-800"></div><p class="mr-4">Learning</p>
+            </div>
+            <div class="flex flex-row items-center">
+                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-red-800"></div><p class="mr-4">Used before</p>
+            </div>
+        </div>
+        <SkillContainer title="Backend">
+            <SkillCard
+                text="Node.js"
+                icon="https://nodejs.org/static/logos/jsIconGreen.svg"
+                url="https://nodejs.org/"
+                rating={3}
+            />
+            <SkillCard
+                text="TypeScript"
+                icon="https://upload.wikimedia.org/wikipedia/commons/f/f5/Typescript.svg"
+                url="https://www.typescriptlang.org/"
+                rating={3}
+            />
+            <SkillCard
+                text="Python"
+                icon="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
+                url="https://python.org/"
+                rating={2}
+            />
+            <SkillCard
+                text="C#"
+                icon="https://upload.wikimedia.org/wikipedia/commons/d/d2/C_Sharp_Logo_2023.svg"
+                url="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
+                rating={1}
+            />
+        </SkillContainer>
+        <SkillContainer title="Frontend">
+            <SkillCard
+                text="HTML"
+                icon="https://www.w3.org/html/logo/downloads/HTML5_Badge.svg"
+                url="https://en.wikipedia.org/wiki/HTML"
+                rating={3}
+            />
+            <SkillCard
+                text="CSS"
+                icon="https://upload.wikimedia.org/wikipedia/commons/a/ab/Official_CSS_Logo.svg"
+                url="https://en.wikipedia.org/wiki/CSS"
+                rating={3}
+            />
+            <SkillCard
+                text="JavaScript"
+                icon="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                url="https://en.wikipedia.org/wiki/JavaScript"
+                rating={3}
+            />
+            <SkillCard
+                text="Astro"
+                icon="https://astro.build/assets/press/astro-icon-light-gradient.svg"
+                url="https://astro.build/"
+                rating={2}
+            />
+            <SkillCard
+                text="Tailwind CSS"
+                icon="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
+                url="https://tailwindcss.com/"
+                rating={2}
+            />
+        </SkillContainer>
+        <SkillContainer title="Databases">
+            <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" rating={1} />
+        </SkillContainer>
+        <SkillContainer title="Embedded">
+            <SkillCard
+                text="Arduino"
+                icon="https://upload.wikimedia.org/wikipedia/commons/7/73/Arduino_IDE_logo.svg"
+                url="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
+                rating={1}
+            />
+        </SkillContainer>
+        <SkillContainer title="Other">
+            <SkillCard
+                text="Discord.JS"
+                icon="https://avatars.githubusercontent.com/u/26492485?s=200&v=4"
+                url="https://discord.js.org/"
+                rating={2}
+            />
+        </SkillContainer>
+        <SkillContainer title="Want to Learn">
+            <SkillCard text="Docker" icon={dockerLogo} url="https://www.docker.com/" />
+        </SkillContainer>
+    </div>
 </Layout>
+
+<script>
+    function updateDate() {
+        const date = new Date().toLocaleDateString("en-US", {
+            timeZone: "Asia/Jakarta",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+        const dateElem = document.getElementById("date");
+        if (dateElem) {
+            dateElem.textContent = `${date}`;
+        }
+    }
+
+    function updateClock() {
+        const time = new Date().toLocaleTimeString("en-US", {
+            timeZone: "Asia/Jakarta",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+        });
+        const clockElem = document.getElementById("clock");
+        if (clockElem) {
+            clockElem.textContent = `${time}`;
+        }
+    }
+    updateDate();
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>

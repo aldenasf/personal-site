@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    platform: string;
+    username: string;
+    url: string;
+}
+
+const { platform, username, url } = Astro.props;
+---
+
+<a
+    href={url}
+    class="mb-4 flex h-12 w-full flex-row items-center rounded-md border-1 border-neutral-600 bg-neutral-800 px-4 py-9 duration-150 ease-in-out hover:bg-neutral-600"
+>
+    <div class="flex w-full items-center">
+        <slot /><p class="ml-1 text-lg">{platform}</p>
+    </div>
+    <Icon class="text-2xl" name="mdi:arrow-top-right" />
+    <!-- <a
+        class="flex h-12 w-full items-center justify-center rounded-md bg-neutral-600 duration-150 ease-in-out hover:bg-neutral-400"
+        href={url}>{username}</a
+    > -->
+</a>
