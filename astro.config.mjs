@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 
 import icon from "astro-icon";
 
@@ -11,5 +11,9 @@ export default defineConfig({
 
     vite: {
         plugins: [tailwindcss()],
+    },
+
+    image: {
+        service: passthroughImageService(),
     },
 });
