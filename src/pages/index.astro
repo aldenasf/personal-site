@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
-    <div class="mx-auto my-10 flex max-w-4xl flex-col justify-center">
+    <div class="mx-auto my-10 flex max-w-screen lg:px-0 px-6 lg:max-w-4xl flex-col justify-center">
         <h1 class="text-3xl font-bold">hi, i'm <span class="text-red-400">alden!</span></h1>
         <p class="text-neutral-200">
             15-year-old self-taught developer from <span class="text-red-400">Indonesia</span>.
@@ -26,14 +26,14 @@ import { Icon } from "astro-icon/components";
                 of them easily or I don't have the time to continue them so they never get published.
             </p>
         </section>
-        <section class="flex flex-row gap-4">
-            <div class="mb-4 flex w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
+        <section class="flex lg:flex-row flex-col gap-4">
+            <div class="lg:mb-4 mb-0 flex w-full lg:w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
                 <div class="flex items-center space-x-2">
                     <Icon class="text-xl" name="mdi:clock" />
                     <span class="text-neutral-500">UTC+7</span><span id="clock" class=""></span>
                 </div>
             </div>
-            <div class="mb-4 flex w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
+            <div class="lg:mb-4 mb-0 flex w-full lg:w-1/3 justify-center rounded-md border-1 border-neutral-600 bg-neutral-800 p-3">
                 <div class="flex items-center space-x-2">
                     <Icon class="text-xl" name="mdi:calendar" />
                     <span id="date" class=""></span>
@@ -41,17 +41,16 @@ import { Icon } from "astro-icon/components";
             </div>
             <a
                 href="https://aldenasf.github.io/blog"
-                class="mb-4 flex w-1/3 justify-between rounded-md border-1 border-rose-600 bg-rose-950 p-3 duration-150 ease-in-out hover:bg-rose-700"
+                class="lg:mb-4 mb-0 flex w-full lg:w-1/3 justify-between rounded-md border-1 border-rose-600 bg-rose-950 p-3 duration-150 ease-in-out hover:bg-rose-700"
             >
                 <div class="flex items-center space-x-2">
                     <Icon class="text-xl" name="mdi:document" /><span>Blog</span>
                 </div>
-
                 <Icon class="text-xl" name="mdi:arrow-top-right" />
             </a>
         </section>
         <h2 id="socials" class="mr-6 py-6 text-2xl font-semibold">Socials</h2>
-        <section class="grid grid-cols-3 gap-4">
+        <section class="grid lg:grid-cols-3 grid-cols-1 gap-4">
             <SocialCard platform="GitHub" username="aldenasf" url="https://github.com/aldenasf">
                 <Icon class="mr-2 text-2xl" name="fa6-brands:github" />
             </SocialCard>
@@ -63,7 +62,7 @@ import { Icon } from "astro-icon/components";
             </SocialCard>
         </section>
         <h2 id="projects" class="mr-6 py-6 text-2xl font-semibold">Projects</h2>
-        <section class="grid grid-cols-2 gap-4">
+        <section class="grid lg:grid-cols-2 grid-cols-1 gap-4">
             <ProjectCard
                 author="AlkaUtilities"
                 repo="metal-pipe-player"
@@ -93,16 +92,18 @@ import { Icon } from "astro-icon/components";
                 url="https://github.com/aldenasf/unicode-spoofer"
             />
         </section>
-        <div id="tech-stack" class="align-center flex flex-row">
+        <div id="tech-stack" class="align-center flex lg:flex-row flex-col">
             <h2 class="mr-6 py-6 text-2xl font-semibold">Tech Stack</h2>
-            <div class="flex flex-row items-center">
-                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-green-800"></div><p class="mr-4">Comfortable</p>
-            </div>
-            <div class="flex flex-row items-center">
-                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-yellow-800"></div><p class="mr-4">Learning</p>
-            </div>
-            <div class="flex flex-row items-center">
-                <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-red-800"></div><p class="mr-4">Used before</p>
+            <div class="flex flex-row flex-wrap mb-4 lg:mb-0">
+                <div class="flex flex-row items-center">
+                    <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-green-800"></div><p class="mr-4">Comfortable</p>
+                </div>
+                <div class="flex flex-row items-center">
+                    <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-yellow-800"></div><p class="mr-4">Learning</p>
+                </div>
+                <div class="flex flex-row items-center">
+                    <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-red-800"></div><p class="mr-4">Used before</p>
+                </div>
             </div>
         </div>
         <SkillContainer title="Backend">

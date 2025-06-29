@@ -6,9 +6,9 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<div class="my-1 flex flex-row items-center">
+<div class="lg:my-1 my-2 flex lg:flex-row flex-col items-center">
     <p
-        class="mr-2 flex w-48 flex-row items-center justify-center rounded-md border-2 border-neutral-800 bg-neutral-900 px-3 py-5 text-lg font-medium"
+        class="lg:mr-2 w-full flex lg:w-48 lg:mb-0 mb-1 flex-row items-center justify-center rounded-md border-2 border-neutral-800 bg-neutral-900 px-3 py-5 text-lg font-medium"
     >
         {title}
     </p>
