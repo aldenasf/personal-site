@@ -5,30 +5,9 @@ import Body from "./Body.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 
-export interface Props {
-    title?: string;
-    description?: string;
-    image?: string;
-    color?: string;
-}
-
-const url = `${Astro.url.origin}${import.meta.env.BASE_URL}`;
-
-const { title, description, image, color } = Astro.props;
-
-const imageUrl = image ? `${url}/${image}` : undefined;
 ---
 
-<Head>
-    <title>{title}</title>
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={imageUrl} />
-    <meta content={color} data-react-helmet="true" name="theme-color" />
-</Head>
+<Head />
 <Body>
     <header>
         <Navbar />
