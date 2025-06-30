@@ -23,17 +23,17 @@ if (colors.hasOwnProperty(language)) {
 ---
 
 <a
-    class="flex flex-col rounded-md border-1 border-neutral-600 bg-neutral-800 p-5 duration-150 ease-in-out hover:bg-neutral-600"
+    class="flex flex-col rounded-md border-2 border-neutral-600 bg-neutral-800 p-5 duration-150 ease-in-out hover:bg-neutral-600"
     href={url}
 >
     <div class="flex flex-row items-center">
         <img class="mr-2 max-h-5 max-w-5 rounded-sm" src={avatar} />
-        <p class="text-md">{author}</p>
+        <p class="text-md text-neutral-300">{author}</p>
         <Icon class="ml-auto text-2xl" name="mdi:arrow-top-right" />
     </div>
     <div class="my-1 flex flex-col items-start">
         <p class="text-lg font-bold">{repo}</p>
-        <p class="text-sm">{description}</p>
+        <p class="text-sm text-neutral-100">{description}</p>
     </div>
     <div class="mt-auto flex flex-row items-center">
         <div class="mr-2 block h-4 w-4 rounded-sm" style={{ backgroundColor: color }}></div>
