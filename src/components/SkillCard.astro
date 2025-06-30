@@ -5,9 +5,26 @@ interface Props {
     url?: string;
     icon?: string | ImageMetadata;
     rating?: 1 | 2 | 3;
+    /**
+     * Optional tooltip
+     */
+    title?: string;
 }
 
-const { text, url, icon, rating } = Astro.props;
+const { text, url, icon, rating, title } = Astro.props;
+
+// {
+//     rating !== undefined && (
+//         <div
+//             class="flex h-0.5 w-full rounded-lg"
+//             class:list={[
+//                 { "bg-red-800": rating === 1 },
+//                 { "bg-yellow-800": rating === 2 },
+//                 { "bg-green-800": rating === 3 },
+//             ]}
+//         />
+//     )
+// }
 ---
 
 <a
@@ -19,6 +36,7 @@ const { text, url, icon, rating } = Astro.props;
         { "border-yellow-800 bg-yellow-950 hover:bg-yellow-800": rating === 2 },
         { "border-green-800 bg-green-950 hover:bg-green-800": rating === 3 },
     ]}
+    {title}
     ><div class="flex flex-row items-center">
         {
             icon && typeof icon !== "string" ? (
@@ -27,18 +45,6 @@ const { text, url, icon, rating } = Astro.props;
                 <img src={icon} alt={text} class="mr-2 h-5 w-5 rounded-xs" />
             ) : null
         }
-        <span>{text}</span>
+        <span class:list={[{ underline: title !== undefined }]}>{text}</span>
     </div>
-    <!-- {
-        rating !== undefined && (
-            <div
-                class="flex h-0.5 w-full rounded-lg"
-                class:list={[
-                    { "bg-red-800": rating === 1 },
-                    { "bg-yellow-800": rating === 2 },
-                    { "bg-green-800": rating === 3 },
-                ]}
-            />
-        )
-    } -->
 </a>
