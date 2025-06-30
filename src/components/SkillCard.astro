@@ -12,7 +12,7 @@ const { text, url, icon, rating } = Astro.props;
 
 <a
     href={url}
-    class="flex flex-col items-center rounded-md border-1 px-3 py-2 text-lg font-medium duration-150 ease-in-out"
+    class="flex flex-col items-center rounded-md border-2 px-3 py-2 text-lg font-medium duration-150 ease-in-out"
     class:list={[
         { "border-neutral-500 bg-neutral-700 hover:bg-neutral-500": rating == undefined },
         { "border-red-800 bg-red-950 hover:bg-red-800": rating === 1 },
