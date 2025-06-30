@@ -1,5 +1,5 @@
 ---
-
+import { Tooltips } from "astro-tooltips";
 ---
 
 <!doctype html>
@@ -14,6 +14,7 @@
         <meta property="og:url" content="https://aldenasf.github.io/" />
         <meta content="#ff6467" data-react-helmet="true" name="theme-color" />
         <meta content="http://github.com/aldenasf.png" name="og:image" />
+        <Tooltips interactive={true} delay={[500, 500]} placement="bottom" />
         <link rel="icon" href="http://github.com/aldenasf.png" />
         <slot />
     </head>
