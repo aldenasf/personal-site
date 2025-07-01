@@ -1,0 +1,2 @@
+- [x] Make the clock take a fixed amount of space so it doesn't shift when the time changes (or make the font monospace)
+- [ ] Merge [blog](https://github.com/aldenasf/blog) into [aldenasf.github.io](https://github.com/aldenasf/aldenasf.github.io)
