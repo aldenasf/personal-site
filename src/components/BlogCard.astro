@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    highlighted?: boolean;
+    pinned?: boolean;
+    title: string;
+    href: string;
+    date: Date;
+    image: string;
+}
+
+const { highlighted, pinned, title, href, date, image } = Astro.props;
+
+const imageWidth = highlighted ? 1440 : 720;
+const imageHeight = highlighted ? 720 : 360;
+---
+
+<a
+    {href}
+    class="group flex flex-col rounded-xl border-2 border-neutral-600 bg-neutral-800 p-4 transition-all duration-150 hover:bg-neutral-600"
+    class:list={[{ "p-4 lg:p-10 lg:pb-4": highlighted }]}
+>
+    <div class="flex transition-colors duration-150">
+        <Image
+            src={image}
+            alt={""}
+            width={imageWidth}
+            height={imageHeight}
+            class="rounded-xl transition-all duration-150 group-hover:to-white group-hover:brightness-125 group-hover:drop-shadow-2xl"
+            class:list={[{ "lg:max-w-3xl": highlighted }, { "lg:max-w-sm": !highlighted }]}
+        />
+    </div>
+    <div
+        class="flex flex-col transition-colors duration-150"
+        class:list={[{ "mt-3 items-start lg:mt-4 lg:items-center": highlighted }, { "mt-3 items-start": !highlighted }]}
+    >
+        <p
+            class="font-bold transition-colors duration-150 group-hover:text-blue-500"
+            class:list={[{ "text-2xl lg:mb-1 lg:text-3xl": highlighted }, { "text-2xl": !highlighted }]}
+        >
+            {title}
+        </p>
+        <p class="lg:text-md text-sm text-neutral-400 transition-colors duration-150 group-hover:text-blue-500">
+            <time datetime={date.toISOString()}>
+                {
+                    date.toLocaleDateString("en-us", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                    })
+                }
+            </time>
+        </p>
+        {
+            pinned && (
+                <div class="absolute flex place-self-end">
+                    <Icon class="mt-4 text-lg text-white lg:text-2xl" name="mdi:pin" />
+                </div>
+            )
+        }
+    </div>
+</a>

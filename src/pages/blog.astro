@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const posts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const pinnedPostIndex = posts.findIndex((post) => post.data?.pinned == true);
+
+let highlightedPost;
+let pinnedPostExists;
+
+if (pinnedPostIndex !== -1) {
+    highlightedPost = posts.splice(pinnedPostIndex, 1)[0];
+    pinnedPostExists = true;
+} else {
+    highlightedPost = posts.shift();
+    pinnedPostExists = false;
+}
+---
+
+<Layout page="blog">
+    <div class="flex items-center justify-center">
+        <div class="flex max-w-4xl flex-col items-center justify-center px-4 py-2 lg:py-8">
+            <div id="pinned-post" class="flex flex-col">
+                <div class="mb-4 flex justify-center">
+                    <h1 class="text-xl font-semibold lg:text-3xl">
+                        {pinnedPostExists ? "Pinned Post" : "Latest Post"}
+                    </h1>
+                </div>
+                <div class="flex">
+                    {
+                        highlightedPost ? (
+                            <BlogCard
+                                highlighted
+                                pinned={pinnedPostExists}
+                                href={`/blog/post/${highlightedPost.slug}`}
+                                title={highlightedPost.data.title}
+                                date={new Date(highlightedPost.data.date)}
+                                image={highlightedPost.data.image}
+                            />
+                        ) : null
+                    }
+                </div>
+            </div>
+            <div id="posts" class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                {
+                    posts.map((post) => (
+                        <BlogCard
+                            href={`/blog/post/${post.slug}`}
+                            title={post.data.title}
+                            date={post.data.date}
+                            image={post.data.image}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -11,7 +11,7 @@ import mongodbLogo from "../assets/icons/mongodb.svg";
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout>
+<Layout page="home">
     <div class="mx-auto my-10 flex max-w-screen flex-col justify-center px-4 lg:max-w-4xl lg:px-0">
         <h1 class="text-3xl font-bold">hi, i'm <span class="text-red-400">alden!</span></h1>
         <p class="text-neutral-200">
@@ -32,7 +32,7 @@ import { Icon } from "astro-icon/components";
             >
                 <div class="flex items-center space-x-2">
                     <Icon class="text-xl" name="mdi:clock" />
-                    <span class="text-neutral-500">UTC+7</span><span id="clock" class=""></span>
+                    <span class="text-neutral-500">UTC+7</span><span id="clock" class="w-16 text-start"></span>
                 </div>
             </div>
             <div
@@ -75,13 +75,6 @@ import { Icon } from "astro-icon/components";
                 url="https://github.com/AlkaUtilities/metal-pipe-player"
             />
             <ProjectCard
-                author="aldenasf"
-                repo="blog"
-                description="personal blog"
-                language="Astro"
-                url="https://github.com/aldenasf/blog"
-            />
-            <ProjectCard
                 author="AlkaUtilities"
                 repo="carbon"
                 description="silly general purpose discord bot"
@@ -94,6 +87,13 @@ import { Icon } from "astro-icon/components";
                 description="A website to replaces regular letters with visually similar alternatives"
                 language="JavaScript"
                 url="https://github.com/aldenasf/unicode-spoofer"
+            />
+            <ProjectCard
+                author="aldenasf"
+                repo="unicode-spoofer-astro"
+                description="📝 Replace Latin characters with visually similar Unicode alternatives from other scripts"
+                language="TypeScript"
+                url="https://github.com/aldenasf/unicode-spoofer-astro"
             />
         </section>
         <div id="tech-stack" class="align-center flex flex-col lg:flex-row">
