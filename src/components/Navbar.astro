@@ -1,10 +1,30 @@
 ---
 import Link from "./navbar/Link.astro";
+
+interface Props {
+    page?: keyof typeof Links;
+}
+
+export const Links = {
+    home: "/",
+    blog: "/blog",
+};
+
+const { page } = Astro.props;
 ---
 
 <nav class="full z-50 flex max-w-screen bg-neutral-900 px-4 text-gray-200 lg:p-0">
     <ul class="mx-auto my-3 flex max-w-4xl flex-row flex-wrap justify-start">
-        <Link name="Home" redirect="/" selected />
-        <Link name="Blog" redirect="/blog" />
+        {
+            Object.keys(Links).map((key, index) => {
+                return (
+                    <Link
+                        name={key.charAt(0).toUpperCase() + key.slice(1)}
+                        redirect={Links[key as keyof typeof Links]}
+                        selected={page === key}
+                    />
+                );
+            })
+        }
     </ul>
 </nav>
