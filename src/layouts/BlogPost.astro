@@ -1,0 +1,74 @@
+---
+import BlogLayout from "./BlogLayout.astro";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"posts">["data"];
+
+const { title, description, date, image, pinned, color } = Astro.props;
+---
+
+<BlogLayout {title} {description} {date} {image} {pinned} {color}>
+    <main class="flex flex-col items-center justify-center py-2 lg:py-8">
+        <div class="flex w-full max-w-screen flex-col flex-wrap items-center lg:max-w-[70rem]">
+            <div class="flex w-full flex-row lg:justify-start">
+                <a
+                    href="/blog"
+                    class="mb-4 flex h-14 w-full flex-row items-center border-y-2 border-neutral-600 bg-neutral-800 px-2 transition-colors duration-150 ease-in-out hover:bg-neutral-600 lg:mb-8 lg:h-12 lg:w-24 lg:justify-center lg:rounded-md lg:border-2"
+                >
+                    <Icon name="mdi:arrow-left" class="mr-1 text-xl" /><span class="">Back</span>
+                </a>
+            </div>
+            <div
+                class="flex w-full flex-col flex-wrap items-center border-y-2 border-neutral-600 bg-neutral-800 py-8 lg:rounded-xl lg:border-2"
+            >
+                <p class="flex flex-row items-center text-sm text-neutral-400 lg:text-xl">
+                    <span>
+                        {
+                            date.toLocaleDateString("en-us", {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                            })
+                        }
+                    </span>
+                    {
+                        pinned && (
+                            <>
+                                <span class="mx-1.5">|</span>
+                                <span class="mx-0 flex flex-row items-center text-red-400">
+                                    <Icon class="mx-1 text-sm lg:text-lg" name="mdi:pin" />
+                                    Pinned
+                                </span>
+                            </>
+                        )
+                    }
+                </p>
+                <h1 class="mt-2 text-center text-3xl font-bold lg:mx-10 lg:mt-4 lg:text-5xl">{title}</h1>
+            </div>
+
+            {
+                image && (
+                    <div id="image" class="mt-0 flex w-full lg:mt-10">
+                        <img
+                            width={1020}
+                            height={510}
+                            src={image}
+                            alt=""
+                            class="w-full border-neutral-600 lg:rounded-xl lg:border-2"
+                        />
+                    </div>
+                )
+            }
+        </div>
+        <div
+            class="mt-0 flex w-full border-y-2 border-neutral-600 bg-neutral-800 lg:mt-10 lg:w-auto lg:max-w-screen lg:rounded-xl lg:border-2 lg:p-12"
+        >
+            <article class="prose prose-base prose-neutral prose-invert lg:prose-lg max-w-sm p-4 lg:max-w-5xl lg:p-0">
+                <slot />
+            </article>
+        </div>
+    </main>
+    <Footer />
+</BlogLayout>
