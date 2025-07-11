@@ -6,9 +6,12 @@ layer(base);
 layer(base);
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
 html {
     scroll-behavior: smooth;
 }
+
 
 :root {
     --font-sans: "Nunito Sans", sans-serif;
