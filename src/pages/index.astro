@@ -141,25 +141,25 @@ import { Icon } from "astro-icon/components";
                     text="Node.js"
                     icon="https://nodejs.org/static/logos/jsIconGreen.svg"
                     url="https://nodejs.org/"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="TypeScript"
                     icon="https://upload.wikimedia.org/wikipedia/commons/f/f5/Typescript.svg"
                     url="https://www.typescriptlang.org/"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="Python"
                     icon="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
                     url="https://python.org/"
-                    rating={2}
+                    status="learning"
                 />
                 <SkillCard
                     text="C#"
                     icon="https://upload.wikimedia.org/wikipedia/commons/d/d2/C_Sharp_Logo_2023.svg"
                     url="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
-                    rating={1}
+                    status="used_briefly"
                 />
             </SkillContainer>
             <SkillContainer text="Frontend">
@@ -167,42 +167,48 @@ import { Icon } from "astro-icon/components";
                     text="HTML"
                     icon="https://www.w3.org/html/logo/downloads/HTML5_Badge.svg"
                     url="https://en.wikipedia.org/wiki/HTML"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="CSS"
                     icon="https://upload.wikimedia.org/wikipedia/commons/a/ab/Official_CSS_Logo.svg"
                     url="https://en.wikipedia.org/wiki/CSS"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="JavaScript"
                     icon="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
                     url="https://en.wikipedia.org/wiki/JavaScript"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="Tailwind CSS"
                     icon="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
                     url="https://tailwindcss.com/"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="Astro"
                     icon="https://astro.build/assets/press/astro-icon-light-gradient.svg"
                     url="https://astro.build/"
-                    rating={2}
+                    status="learning"
+                />
+                <SkillCard
+                    text="React"
+                    icon="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                    url="https://react.dev/"
+                    status="learning"
                 />
             </SkillContainer>
             <SkillContainer text="Databases">
-                <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" rating={1} />
+                <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" status="used_briefly" />
             </SkillContainer>
             <SkillContainer text="Embedded">
                 <SkillCard
                     text="Arduino (C/C++)"
                     icon="https://cdn.arduino.cc/header-footer/prod/assets/favicon-arduino/favicon.ico"
                     url="https://www.arduino.cc/"
-                    rating={1}
+                    status="used_briefly"
                 />
             </SkillContainer>
             <SkillContainer text="Tools">
@@ -210,37 +216,37 @@ import { Icon } from "astro-icon/components";
                     text="Visual Studio Code"
                     icon="https://code.visualstudio.com/assets/images/code-stable.png"
                     url="https://code.visualstudio.com/"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="pnpm"
                     icon="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0IiB2aWV3Qm94PSI3Ni41ODk4NzI0NDg5Nzk1OCA0NCAxNjQuMDA3NzU1MTAyMDQwNjggMTY0IiB3aWR0aD0iMTYwLjAxIiBoZWlnaHQ9IjE2MCI+PGRlZnM+PHBhdGggZD0iTTIzNy42IDk1TDE4Ny42IDk1TDE4Ny42IDQ1TDIzNy42IDQ1TDIzNy42IDk1WiIgaWQ9ImI0NXZkVEQ4aHMiPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDk1TDEzMi41OSA5NUwxMzIuNTkgNDVMMTgyLjU5IDQ1TDE4Mi41OSA5NVoiIGlkPSJhNDBXdHhJbDhkIj48L3BhdGg+PHBhdGggZD0iTTEyNy41OSA5NUw3Ny41OSA5NUw3Ny41OSA0NUwxMjcuNTkgNDVMMTI3LjU5IDk1WiIgaWQ9ImgyQ045QUVFcGUiPjwvcGF0aD48cGF0aCBkPSJNMjM3LjYgMTUwTDE4Ny42IDE1MEwxODcuNiAxMDBMMjM3LjYgMTAwTDIzNy42IDE1MFoiIGlkPSJkcXY1MTMzRzgiPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDE1MEwxMzIuNTkgMTUwTDEzMi41OSAxMDBMMTgyLjU5IDEwMEwxODIuNTkgMTUwWiIgaWQ9ImIxTHY3OXlwdm0iPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDIwNUwxMzIuNTkgMjA1TDEzMi41OSAxNTVMMTgyLjU5IDE1NUwxODIuNTkgMjA1WiIgaWQ9Imh5MUlaV3dMWCI+PC9wYXRoPjxwYXRoIGQ9Ik0yMzcuNiAyMDVMMTg3LjYgMjA1TDE4Ny42IDE1NUwyMzcuNiAxNTVMMjM3LjYgMjA1WiIgaWQ9ImFrUWZqeFFlcyI+PC9wYXRoPjxwYXRoIGQ9Ik0xMjcuNTkgMjA1TDc3LjU5IDIwNUw3Ny41OSAxNTVMMTI3LjU5IDE1NUwxMjcuNTkgMjA1WiIgaWQ9ImJkU3J3RTVwayI+PC9wYXRoPjwvZGVmcz48Zz48Zz48dXNlIHhsaW5rOmhyZWY9IiNiNDV2ZFREOGhzIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNhNDBXdHhJbDhkIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNoMkNOOUFFRXBlIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNkcXY1MTMzRzgiIG9wYWNpdHk9IjEiIGZpbGw9IiNmOWFkMDAiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjxnPjx1c2UgeGxpbms6aHJlZj0iI2IxTHY3OXlwdm0iIG9wYWNpdHk9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjxnPjx1c2UgeGxpbms6aHJlZj0iI2h5MUlaV3dMWCIgb3BhY2l0eT0iMSIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIj48L3VzZT48L2c+PGc+PHVzZSB4bGluazpocmVmPSIjYWtRZmp4UWVzIiBvcGFjaXR5PSIxIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNiZFNyd0U1cGsiIG9wYWNpdHk9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjwvZz48L3N2Zz4="
                     url="https://pnpm.io/"
-                    rating={3}
+                    status="comfortable"
                 />
                 <SkillCard
                     text="Git"
                     icon="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.svg"
                     url="https://git-scm.com/"
-                    rating={2}
+                    status="learning"
                 />
                 <SkillCard
                     text="Visual Studio"
                     icon="https://upload.wikimedia.org/wikipedia/commons/2/2c/Visual_Studio_Icon_2022.svg"
                     url="https://visualstudio.microsoft.com/"
-                    rating={2}
+                    status="learning"
                 />
                 <SkillCard
                     text="Linux"
                     icon="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
-                    rating={1}
+                    status="used_briefly"
                     title="No specific distros. Just Linux in general."
                 />
                 <SkillCard
                     text="dnSpy"
                     icon="https://dnspy.org/wp-content/uploads/2024/10/dnspy.png"
                     url="https://dnspy.org/"
-                    rating={4}
+                    status="previously_used"
                 />
             </SkillContainer>
             <SkillContainer text="Other">
@@ -248,7 +254,7 @@ import { Icon } from "astro-icon/components";
                     text="Discord.js"
                     icon="https://avatars.githubusercontent.com/u/26492485?s=200&v=4"
                     url="https://discord.js.org/"
-                    rating={4}
+                    status="previously_used"
                 />
             </SkillContainer>
             <SkillContainer text="Want to Learn" title="Stuff I want to learn in the future">

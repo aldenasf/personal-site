@@ -4,14 +4,14 @@ interface Props {
     text: string;
     url?: string;
     icon?: string | ImageMetadata;
-    rating?: 1 | 2 | 3 | 4;
+    status?: "comfortable" | "learning" | "used_briefly" | "previously_used";
     /**
      * Optional tooltip
      */
     title?: string;
 }
 
-const { text, url, icon, rating, title } = Astro.props;
+const { text, url, icon, status, title } = Astro.props;
 
 // {
 //     rating !== undefined && (
@@ -31,11 +31,11 @@ const { text, url, icon, rating, title } = Astro.props;
     href={url}
     class="flex flex-col items-center rounded-md border-2 px-3 py-2 text-lg font-medium duration-150 ease-in-out"
     class:list={[
-        { "border-neutral-500 bg-neutral-700 hover:bg-neutral-500": rating == undefined },
-        { "border-red-800 bg-red-950 hover:bg-red-800": rating === 1 },
-        { "border-yellow-800 bg-yellow-950 hover:bg-yellow-800": rating === 2 },
-        { "border-green-800 bg-green-950 hover:bg-green-800": rating === 3 },
-        { "border-sky-800 bg-sky-950 hover:bg-sky-800": rating === 4 },
+        { "border-neutral-500 bg-neutral-700 hover:bg-neutral-500": status == undefined },
+        { "border-red-800 bg-red-950 hover:bg-red-800": status === "used_briefly" },
+        { "border-yellow-800 bg-yellow-950 hover:bg-yellow-800": status === "learning" },
+        { "border-green-800 bg-green-950 hover:bg-green-800": status === "comfortable" },
+        { "border-sky-800 bg-sky-950 hover:bg-sky-800": status === "previously_used" },
     ]}
     {title}
     ><div class="flex flex-row items-center">
