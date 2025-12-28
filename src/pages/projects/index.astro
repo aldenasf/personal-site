@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
+import type { Props } from "../../components/BlogCard.astro";
 
 const posts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
@@ -17,6 +18,16 @@ if (pinnedPostIndex !== -1) {
     highlightedPost = posts.shift();
     pinnedPostExists = false;
 }
+
+type SinglePost = (typeof posts)[number];
+
+const getCardProps = (post: SinglePost) => ({
+    href: `/projects/${post.slug}`,
+    title: post.data.title,
+    description: post.data.description,
+    date: new Date(post.data.date),
+    image: post.data.image,
+});
 ---
 
 <Layout page="projects">
@@ -31,31 +42,13 @@ if (pinnedPostIndex !== -1) {
                 <div class="flex">
                     {
                         highlightedPost ? (
-                            <BlogCard
-                                highlighted
-                                pinned={pinnedPostExists}
-                                href={`/blog/post/${highlightedPost.slug}`}
-                                title={highlightedPost.data.title}
-                                description={highlightedPost.data.description}
-                                date={new Date(highlightedPost.data.date)}
-                                image={highlightedPost.data.image}
-                            />
+                            <BlogCard highlighted pinned={pinnedPostExists} {...getCardProps(highlightedPost)} />
                         ) : null
                     }
                 </div>
             </div>
             <div id="posts" class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
-                {
-                    posts.map((post) => (
-                        <BlogCard
-                            href={`/blog/post/${post.slug}`}
-                            title={post.data.title}
-                            description={post.data.description}
-                            date={post.data.date}
-                            image={post.data.image}
-                        />
-                    ))
-                }
+                {posts.map((post) => <BlogCard {...getCardProps(post)} />)}
             </div>
         </div>
     </div>
