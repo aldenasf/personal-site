@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../layouts/Layout.astro";
-import BlogCard from "../components/BlogCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import BlogCard from "../../components/BlogCard.astro";
 
 const posts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
@@ -19,7 +19,7 @@ if (pinnedPostIndex !== -1) {
 }
 ---
 
-<Layout page="blog">
+<Layout page="projects">
     <div class="flex items-center justify-center">
         <div class="flex max-w-4xl flex-col items-center justify-center px-4 py-2 lg:py-8">
             <div id="pinned-post" class="flex flex-col">
@@ -36,6 +36,7 @@ if (pinnedPostIndex !== -1) {
                                 pinned={pinnedPostExists}
                                 href={`/blog/post/${highlightedPost.slug}`}
                                 title={highlightedPost.data.title}
+                                description={highlightedPost.data.description}
                                 date={new Date(highlightedPost.data.date)}
                                 image={highlightedPost.data.image}
                             />
@@ -49,6 +50,7 @@ if (pinnedPostIndex !== -1) {
                         <BlogCard
                             href={`/blog/post/${post.slug}`}
                             title={post.data.title}
+                            description={post.data.description}
                             date={post.data.date}
                             image={post.data.image}
                         />
