@@ -15,7 +15,10 @@ export default defineConfig({
     },
 
     image: {
-        service: passthroughImageService(),
+        // service: passthroughImageService(),
+        service: {
+            entrypoint: "astro/assets/services/sharp",
+        },
     },
 
     adapter: vercel({
