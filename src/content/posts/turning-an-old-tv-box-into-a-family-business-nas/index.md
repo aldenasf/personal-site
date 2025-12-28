@@ -21,7 +21,16 @@ I didn't wanna deal with the headache of rooting it myself yet, so I bought one 
 - **Networking:** Connected via Ethernet to our existing network switch.
 - **Power Management:** Initially, I used simple USB-to-SATA converters that drew power directly from the STB. However, as we added more drives, I realized the STB wouldn't provide enough current to spin multiple HDDs. I upgraded to **powered USB-to-SATA adapters** that use their own external power supplies to ensure the system remains stable and doesn't overload the STB.
 
-As I wasn't very familiar with Linux at the start, I followed tutorials to get CasaOS installed. The process was pretty straightforward: I updated the package lists and ran the install script via the terminal. Once CasaOS was running, I did the rest of the work through the web UI like mounting the drives, setting up the network shares (SMB), and then mapping them to all the Windows computers in the business. The result? My dad was impressed, and we now use it daily to share design files instantly across the shop.
+As I wasn't very familiar with Linux at the start, I followed tutorials to get CasaOS installed. The process was pretty straightforward: I updated the package lists and ran the install script via the terminal. Once CasaOS was running, I did the rest of the work through the web UI like mounting the drives, setting up the network shares (SMB), and then mapping them to all the Windows computers in the business.
+
+## Result
+
+The result? My dad was impressed, and we now use it daily to share design files instantly across the shop.
+
+|                                     |                                     |
+| ----------------------------------- | ----------------------------------- |
+| ![image](./IMG_20251228_120033.jpg) | ![image](./IMG_20251228_120105.jpg) |
+| ![image](./IMG_20251228_120241.jpg) | ![image](./IMG_20251228_120313.jpg) |
 
 ## Challenges & Known Issues
 
