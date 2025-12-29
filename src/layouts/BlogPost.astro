@@ -1,5 +1,6 @@
 ---
 import BlogLayout from "./BlogLayout.astro";
+import { Image } from "astro:assets";
 import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
@@ -52,11 +53,15 @@ const { title, description, date, image, pinned, color } = Astro.props;
             {
                 image && (
                     <div id="image" class="mt-0 flex w-full lg:mt-10">
-                        <img
-                            width={1020}
-                            height={510}
+                        <Image
                             src={image}
-                            alt=""
+                            alt={title}
+                            width={1920}
+                            height={1080}
+                            format="webp"
+                            fit="cover"
+                            position="center"
+                            loading={"lazy"}
                             class="w-full border-neutral-600 lg:rounded-xl lg:border-2"
                         />
                     </div>
