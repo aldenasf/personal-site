@@ -26,6 +26,7 @@ const getCardProps = (post: SinglePost) => ({
     title: post.data.title,
     description: post.data.description,
     date: new Date(post.data.date),
+    updated: post.data.updated ? new Date(post.data.updated) : undefined,
     image: post.data.image,
 });
 ---

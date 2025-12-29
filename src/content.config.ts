@@ -7,6 +7,7 @@ const posts = defineCollection({
             title: z.string(),
             description: z.string(),
             date: z.coerce.date(),
+            updated: z.coerce.date().optional(),
             // image: z.preprocess((i) => `${import.meta.env.BASE_URL}${i}`, z.string()),
             image: image(),
             color: z.string().optional(),

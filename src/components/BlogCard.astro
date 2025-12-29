@@ -10,6 +10,7 @@ export interface Props {
     description: string;
     href: string;
     date: Date;
+    updated?: Date;
     image: ImageMetadata;
 }
 
@@ -64,6 +65,21 @@ const imageHeight = highlighted ? 720 : 360;
                     })
                 }
             </time>
+            {
+                updated !== undefined && (
+                    <span class="">
+                        <time datetime={updated.toISOString()}>
+                            {"(updated " +
+                                updated.toLocaleDateString("en-us", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                }) +
+                                ")"}
+                        </time>
+                    </span>
+                )
+            }
         </p>
         {
             pinned && (
