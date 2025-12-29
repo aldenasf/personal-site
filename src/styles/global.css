@@ -24,6 +24,21 @@ html {
     }
 }
 
+@layer base {
+    /* Remove quotes from all blockquotes inside a .prose container */
+    .prose blockquote p:first-of-type::before {
+        content: none !important;
+    }
+    .prose blockquote p:last-of-type::after {
+        content: none !important;
+    }
+
+    /* Remove italics from all blockquotes */
+    .prose blockquote {
+        font-style: normal !important;
+    }
+}
+
 .tippy-box[data-theme="default"] {
     background-color: var(--color-neutral-700);
     color: var(--color-white);
