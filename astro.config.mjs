@@ -4,11 +4,13 @@ import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
     output: "server",
 
-    integrations: [icon()],
+    integrations: [icon(), mdx()],
 
     vite: {
         plugins: [tailwindcss()],
