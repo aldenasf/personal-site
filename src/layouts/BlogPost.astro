@@ -22,7 +22,7 @@ const { title, description, date, updated, image, pinned, color } = Astro.props;
                 </a>
             </div>
             <div
-                class="flex w-full flex-col flex-wrap items-center border-y-2 border-neutral-600 bg-neutral-800 py-8 lg:rounded-xl lg:border-2"
+                class="flex w-full flex-col flex-wrap border-y-2 border-neutral-600 bg-neutral-800 px-2 py-8 lg:items-center lg:rounded-xl lg:border-2 lg:px-0"
             >
                 <p class="flex flex-row items-center text-sm text-neutral-400 lg:text-xl">
                     <span class="mx-0 flex flex-row items-center">
@@ -59,8 +59,12 @@ const { title, description, date, updated, image, pinned, color } = Astro.props;
                         )
                     }
                 </p>
-                <h1 class="mt-2 text-center text-3xl font-bold lg:mx-10 lg:mt-4 lg:text-4xl">{title}</h1>
-                <p class="mt-3 text-center text-lg text-neutral-400">{description}</p>
+                <h1 class="mt-2 max-w-96 text-xl font-bold lg:mx-10 lg:mt-4 lg:max-w-none lg:text-center lg:text-4xl">
+                    {title}
+                </h1>
+                <p class="mt-3 max-w-96 text-sm text-neutral-400 lg:max-w-none lg:text-center lg:text-lg">
+                    {description}
+                </p>
             </div>
 
             {
@@ -82,7 +86,7 @@ const { title, description, date, updated, image, pinned, color } = Astro.props;
             }
         </div>
         <div
-            class="mt-0 flex w-full border-y-2 border-neutral-600 bg-neutral-800 lg:mt-10 lg:w-auto lg:max-w-screen lg:rounded-xl lg:border-2 lg:p-12"
+            class="mt-0 flex w-full justify-center border-y-2 border-neutral-600 bg-neutral-800 lg:mt-10 lg:w-auto lg:max-w-screen lg:rounded-xl lg:border-2 lg:p-12"
         >
             <article class="prose prose-base prose-neutral prose-invert lg:prose-lg max-w-sm p-4 lg:max-w-5xl lg:p-0">
                 <slot />
