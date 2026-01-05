@@ -9,12 +9,14 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/vercel": "^8.2.1",
+        "@astrojs/mdx": "^4.3.13",
+        "@astrojs/vercel": "^9.0.2",
         "@tailwindcss/vite": "^4.1.11",
-        "astro": "^5.10.1",
+        "astro": "^5.16.6",
         "astro-icon": "^1.1.5",
         "astro-tooltips": "^0.6.2",
         "prettier-plugin-tailwindcss": "^0.6.13",
+        "sharp": "0.33.3",
         "tailwindcss": "^4.1.11"
     },
     "devDependencies": {
@@ -24,5 +26,12 @@
         "@tailwindcss/typography": "^0.5.16",
         "prettier": "3.6.2",
         "prettier-plugin-astro": "0.14.1"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "@tailwindcss/oxide",
+            "esbuild",
+            "sharp"
+        ]
     }
 }

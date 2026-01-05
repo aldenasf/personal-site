@@ -1,0 +1,30 @@
+---
+export const prerender = true;
+
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+    return posts.map((post: any) => ({
+        params: { slug: getCleanSlug(post.slug) },
+        props: post,
+    }));
+}
+
+export function getCleanSlug(id: string): string {
+    // Remove file extensions and specific file names
+    return id
+        .replace(/\/post\.md$/, "") // Remove '/post.md'
+        .replace(/\/index\.md$/, ""); // Remove '/index.md' if present
+}
+
+type Props = CollectionEntry<"posts">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPost {...post.data}>
+    <Content />
+</BlogPost>

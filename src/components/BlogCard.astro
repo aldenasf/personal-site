@@ -1,17 +1,20 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
 
-interface Props {
+export interface Props {
     highlighted?: boolean;
     pinned?: boolean;
     title: string;
+    description: string;
     href: string;
     date: Date;
-    image: string;
+    updated?: Date;
+    image: ImageMetadata;
 }
 
-const { highlighted, pinned, title, href, date, image } = Astro.props;
+const { highlighted, pinned, title, description, href, date, updated, image } = Astro.props;
 
 const imageWidth = highlighted ? 1440 : 720;
 const imageHeight = highlighted ? 720 : 360;
@@ -20,29 +23,42 @@ const imageHeight = highlighted ? 720 : 360;
 <a
     {href}
     class="group flex flex-col rounded-xl border-2 border-neutral-600 bg-neutral-800 p-4 transition-all duration-150 hover:bg-neutral-600"
-    class:list={[{ "p-4 lg:p-10 lg:pb-4": highlighted }]}
+    class:list={[{ "p-4 lg:p-10 lg:pb-4": highlighted }, { "max-h-96 lg:h-96": !highlighted }]}
 >
     <div class="flex transition-colors duration-150">
         <Image
             src={image}
-            alt={""}
+            alt={title}
             width={imageWidth}
             height={imageHeight}
-            class="rounded-xl transition-all duration-150 group-hover:to-white group-hover:brightness-125 group-hover:drop-shadow-2xl"
-            class:list={[{ "lg:max-w-3xl": highlighted }, { "lg:max-w-sm": !highlighted }]}
+            format="webp"
+            fit="cover"
+            position="center"
+            loading={highlighted ? "eager" : "lazy"}
         />
     </div>
     <div
-        class="flex flex-col transition-colors duration-150"
-        class:list={[{ "mt-3 items-start lg:mt-4 lg:items-center": highlighted }, { "mt-3 items-start": !highlighted }]}
+        class="mt-3 flex h-full flex-col transition-colors duration-150"
+        class:list={[{ "items-start lg:mt-4 lg:items-center": highlighted }, { "items-start": !highlighted }]}
     >
         <p
-            class="font-bold transition-colors duration-150 group-hover:text-blue-500"
+            class="line-clamp-2 font-bold transition-colors duration-150 group-hover:text-blue-500"
             class:list={[{ "text-2xl lg:mb-1 lg:text-3xl": highlighted }, { "text-2xl": !highlighted }]}
         >
             {title}
         </p>
-        <p class="lg:text-md text-sm text-neutral-400 transition-colors duration-150 group-hover:text-blue-500">
+        <p
+            class="mb-2 line-clamp-3 text-neutral-400 transition-colors duration-150 group-hover:text-blue-500 lg:line-clamp-2"
+            class:list={[
+                { "items-start lg:items-center lg:text-center": highlighted },
+                { "items-start": !highlighted },
+            ]}
+        >
+            {description}
+        </p>
+        <p
+            class="lg:text-md mt-auto pt-1 text-sm text-neutral-400 transition-colors duration-150 group-hover:text-blue-500"
+        >
             <time datetime={date.toISOString()}>
                 {
                     date.toLocaleDateString("en-us", {
@@ -52,6 +68,21 @@ const imageHeight = highlighted ? 720 : 360;
                     })
                 }
             </time>
+            {
+                updated !== undefined && (
+                    <span class="">
+                        <time datetime={updated.toISOString()}>
+                            {"(updated " +
+                                updated.toLocaleDateString("en-us", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                }) +
+                                ")"}
+                        </time>
+                    </span>
+                )
+            }
         </p>
         {
             pinned && (

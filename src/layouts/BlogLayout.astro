@@ -8,7 +8,7 @@ import type { CollectionEntry } from "astro:content";
 
 type Props = CollectionEntry<"posts">["data"];
 
-const { title, description, date, image, color } = Astro.props;
+const { title, description, date, updated, image, color } = Astro.props;
 
 const url = Astro.url.href;
 const imageUrl = `${Astro.url.origin}${image}`;
@@ -24,10 +24,11 @@ const imageUrl = `${Astro.url.origin}${image}`;
     <meta name="twitter:image" content={imageUrl} />
     <meta name="theme-color" content={color || "#0f172a"} data-react-helmet="true" />
     <meta property="article:published_time" content={date.toISOString()} />
+    {updated !== undefined && <meta property="article:modified_time" content={updated.toISOString()} />}
 </Head>
 <Body>
     <header>
-        <Navbar page="blog" />
+        <Navbar page="projects" />
     </header>
 
     <main>

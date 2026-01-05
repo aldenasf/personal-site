@@ -44,11 +44,11 @@ import { Icon } from "astro-icon/components";
                 </div>
             </div>
             <a
-                href="/blog"
-                class="mb-0 flex w-full justify-between rounded-md border-2 border-rose-600 bg-rose-950 p-3 duration-150 ease-in-out hover:bg-rose-700 lg:mb-4 lg:w-1/3"
+                href="/projects"
+                class="mb-0 flex w-full justify-between rounded-md border-2 border-sky-600 bg-sky-950 p-3 duration-150 ease-in-out hover:bg-sky-700 lg:mb-4 lg:w-1/3"
             >
                 <div class="flex items-center space-x-2">
-                    <Icon class="text-xl" name="mdi:document" /><span>Blog</span>
+                    <Icon class="text-xl" name="mdi:document" /><span>Projects</span>
                 </div>
                 <Icon class="text-xl" name="mdi:arrow-top-right" />
             </a>
@@ -96,70 +96,28 @@ import { Icon } from "astro-icon/components";
                 url="https://github.com/aldenasf/unicode-spoofer-astro"
             />
         </section>
-        <div id="tech-stack" class="align-center flex flex-col lg:flex-row">
-            <h2 class="mr-6 py-6 text-2xl font-semibold">Tech Stack</h2>
-            <div class="mb-4 flex flex-row flex-wrap lg:mb-0">
-                <div class="flex flex-row items-center">
-                    <div
-                        class="flex h-auto flex-row items-center"
-                        title="Stuff I use regularly and work with confidently"
-                    >
-                        <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-green-800"></div><p class="mr-4 underline">
-                            Comfortable
-                        </p>
-                    </div>
-                </div>
-                <div class="group flex flex-row items-center">
-                    <div
-                        class="flex h-auto flex-row items-center"
-                        title="Stuff I know a little but still need practice with"
-                    >
-                        <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-yellow-800"></div><p class="mr-4 underline">
-                            Learning
-                        </p>
-                    </div>
-                </div>
-                <div class="group flex flex-row items-center">
-                    <div class="flex h-auto flex-row items-center" title="Stuff I've only tried a few times">
-                        <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-red-800"></div><p class="mr-4 underline">
-                            Used briefly
-                        </p>
-                    </div>
-                </div>
-                <div class="group flex flex-row items-center">
-                    <div class="flex h-auto flex-row items-center" title="Stuff I knew well but don't use anymore">
-                        <div class="mr-1 block h-3.5 w-3.5 rounded-sm bg-sky-800"></div><p class="mr-4 underline">
-                            Previously used
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="mr-6 py-6 text-2xl font-semibold">Tech Stack</h2>
         <section class="flex flex-col">
             <SkillContainer text="Backend">
                 <SkillCard
                     text="Node.js"
                     icon="https://nodejs.org/static/logos/jsIconGreen.svg"
                     url="https://nodejs.org/"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="TypeScript"
                     icon="https://upload.wikimedia.org/wikipedia/commons/f/f5/Typescript.svg"
                     url="https://www.typescriptlang.org/"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="Python"
                     icon="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
                     url="https://python.org/"
-                    status="learning"
                 />
                 <SkillCard
                     text="C#"
                     icon="https://upload.wikimedia.org/wikipedia/commons/d/d2/C_Sharp_Logo_2023.svg"
                     url="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
-                    status="used_briefly"
                 />
             </SkillContainer>
             <SkillContainer text="Frontend">
@@ -167,86 +125,51 @@ import { Icon } from "astro-icon/components";
                     text="HTML"
                     icon="https://www.w3.org/html/logo/downloads/HTML5_Badge.svg"
                     url="https://en.wikipedia.org/wiki/HTML"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="CSS"
                     icon="https://upload.wikimedia.org/wikipedia/commons/a/ab/Official_CSS_Logo.svg"
                     url="https://en.wikipedia.org/wiki/CSS"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="JavaScript"
                     icon="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
                     url="https://en.wikipedia.org/wiki/JavaScript"
-                    status="comfortable"
-                />
-                <SkillCard
-                    text="Tailwind CSS"
-                    icon="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
-                    url="https://tailwindcss.com/"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="Astro"
                     icon="https://astro.build/assets/press/astro-icon-light-gradient.svg"
                     url="https://astro.build/"
-                    status="learning"
                 />
                 <SkillCard
-                    text="React"
-                    icon="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                    url="https://react.dev/"
-                    status="learning"
+                    text="Tailwind CSS"
+                    icon="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
+                    url="https://tailwindcss.com/"
                 />
             </SkillContainer>
             <SkillContainer text="Databases">
-                <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" status="used_briefly" />
-            </SkillContainer>
-            <SkillContainer text="Embedded">
-                <SkillCard
-                    text="Arduino (C/C++)"
-                    icon="https://cdn.arduino.cc/header-footer/prod/assets/favicon-arduino/favicon.ico"
-                    url="https://www.arduino.cc/"
-                    status="used_briefly"
-                />
+                <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" />
             </SkillContainer>
             <SkillContainer text="Tools">
-                <SkillCard
-                    text="Visual Studio Code"
-                    icon="https://code.visualstudio.com/assets/images/code-stable.png"
-                    url="https://code.visualstudio.com/"
-                    status="comfortable"
-                />
                 <SkillCard
                     text="pnpm"
                     icon="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0IiB2aWV3Qm94PSI3Ni41ODk4NzI0NDg5Nzk1OCA0NCAxNjQuMDA3NzU1MTAyMDQwNjggMTY0IiB3aWR0aD0iMTYwLjAxIiBoZWlnaHQ9IjE2MCI+PGRlZnM+PHBhdGggZD0iTTIzNy42IDk1TDE4Ny42IDk1TDE4Ny42IDQ1TDIzNy42IDQ1TDIzNy42IDk1WiIgaWQ9ImI0NXZkVEQ4aHMiPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDk1TDEzMi41OSA5NUwxMzIuNTkgNDVMMTgyLjU5IDQ1TDE4Mi41OSA5NVoiIGlkPSJhNDBXdHhJbDhkIj48L3BhdGg+PHBhdGggZD0iTTEyNy41OSA5NUw3Ny41OSA5NUw3Ny41OSA0NUwxMjcuNTkgNDVMMTI3LjU5IDk1WiIgaWQ9ImgyQ045QUVFcGUiPjwvcGF0aD48cGF0aCBkPSJNMjM3LjYgMTUwTDE4Ny42IDE1MEwxODcuNiAxMDBMMjM3LjYgMTAwTDIzNy42IDE1MFoiIGlkPSJkcXY1MTMzRzgiPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDE1MEwxMzIuNTkgMTUwTDEzMi41OSAxMDBMMTgyLjU5IDEwMEwxODIuNTkgMTUwWiIgaWQ9ImIxTHY3OXlwdm0iPjwvcGF0aD48cGF0aCBkPSJNMTgyLjU5IDIwNUwxMzIuNTkgMjA1TDEzMi41OSAxNTVMMTgyLjU5IDE1NUwxODIuNTkgMjA1WiIgaWQ9Imh5MUlaV3dMWCI+PC9wYXRoPjxwYXRoIGQ9Ik0yMzcuNiAyMDVMMTg3LjYgMjA1TDE4Ny42IDE1NUwyMzcuNiAxNTVMMjM3LjYgMjA1WiIgaWQ9ImFrUWZqeFFlcyI+PC9wYXRoPjxwYXRoIGQ9Ik0xMjcuNTkgMjA1TDc3LjU5IDIwNUw3Ny41OSAxNTVMMTI3LjU5IDE1NUwxMjcuNTkgMjA1WiIgaWQ9ImJkU3J3RTVwayI+PC9wYXRoPjwvZGVmcz48Zz48Zz48dXNlIHhsaW5rOmhyZWY9IiNiNDV2ZFREOGhzIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNhNDBXdHhJbDhkIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNoMkNOOUFFRXBlIiBvcGFjaXR5PSIxIiBmaWxsPSIjZjlhZDAwIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNkcXY1MTMzRzgiIG9wYWNpdHk9IjEiIGZpbGw9IiNmOWFkMDAiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjxnPjx1c2UgeGxpbms6aHJlZj0iI2IxTHY3OXlwdm0iIG9wYWNpdHk9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjxnPjx1c2UgeGxpbms6aHJlZj0iI2h5MUlaV3dMWCIgb3BhY2l0eT0iMSIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIj48L3VzZT48L2c+PGc+PHVzZSB4bGluazpocmVmPSIjYWtRZmp4UWVzIiBvcGFjaXR5PSIxIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiPjwvdXNlPjwvZz48Zz48dXNlIHhsaW5rOmhyZWY9IiNiZFNyd0U1cGsiIG9wYWNpdHk9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PC91c2U+PC9nPjwvZz48L3N2Zz4="
                     url="https://pnpm.io/"
-                    status="comfortable"
                 />
                 <SkillCard
                     text="Git"
                     icon="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.svg"
                     url="https://git-scm.com/"
-                    status="learning"
-                />
-                <SkillCard
-                    text="Visual Studio"
-                    icon="https://upload.wikimedia.org/wikipedia/commons/2/2c/Visual_Studio_Icon_2022.svg"
-                    url="https://visualstudio.microsoft.com/"
-                    status="learning"
                 />
                 <SkillCard
                     text="Linux"
                     icon="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
-                    status="used_briefly"
                     title="No specific distros. Just Linux in general."
                 />
                 <SkillCard
                     text="dnSpy"
                     icon="https://dnspy.org/wp-content/uploads/2024/10/dnspy.png"
                     url="https://dnspy.org/"
-                    status="previously_used"
                 />
             </SkillContainer>
             <SkillContainer text="Other">
@@ -254,15 +177,11 @@ import { Icon } from "astro-icon/components";
                     text="Discord.js"
                     icon="https://avatars.githubusercontent.com/u/26492485?s=200&v=4"
                     url="https://discord.js.org/"
-                    status="previously_used"
                 />
-            </SkillContainer>
-            <SkillContainer text="Want to Learn" title="Stuff I want to learn in the future">
-                <SkillCard text="Docker" icon={dockerLogo} url="https://www.docker.com/" />
                 <SkillCard
-                    text="PostgreSQL"
-                    icon="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg"
-                    url="https://www.postgresql.org/"
+                    text="Arduino"
+                    icon="https://cdn.arduino.cc/header-footer/prod/assets/favicon-arduino/favicon.ico"
+                    url="https://www.arduino.cc/"
                 />
             </SkillContainer>
         </section>

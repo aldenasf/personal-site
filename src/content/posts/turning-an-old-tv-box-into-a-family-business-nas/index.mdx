@@ -1,0 +1,299 @@
+---
+title: "Turning an old TV Box into a Family Business NAS"
+description:
+    "Repurposing an old $15 Android TV box into a functional NAS for my family's
+    printing business."
+date: "Dec 30, 2024"
+updated: "Jan 06, 2025"
+image: "./cover.jpg"
+---
+
+import { Image } from "astro:assets";
+
+## Project Motivation
+
+My parents run a printing business at home. Since we have multiple computers, we
+were constantly moving files around using flash drives. If we were designing
+something on one computer and wanted to print it, we had to manually transfer it
+to the specific computer connected to the printer. It worked, but it was
+inefficient and slowed down our workflow.
+
+I had been watching YouTube videos about repurposing old Set-Top Boxes (STBs) as
+home servers. I wanted to see if I could apply that to a real-world use case, so
+I convinced my parents to let me get a second-hand **IndiHome HG680P**.
+
+## The Setup
+
+I didn't wanna deal with the headache of rooting it myself yet, so I bought one
+that already had Armbian installed. My goal wasn't just to play around with it.
+I wanted to see if I could actually make it useful for the business.
+
+- **Hardware:** IndiHome HG680P.
+- **OS & Software:** Armbian + CasaOS (for a user-friendly web UI).
+- **Storage:** Multiple external hard drives repurposed from the business.
+- **Networking:** Connected via Ethernet to our existing network switch.
+
+<div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+    <Image
+        src={import("./images/stb-top.png")}
+        alt="Before: Wall-mounted server setup in its original state, using multiple cheap SATA adapters to power several hard drives."
+        class="h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+    <Image
+        src={import("./images/stb-bottom.png")}
+        alt="After: Current wall-mounted setup showing the remaining hard drives after one failure, now powered by a single high-quality, external-power SATA adapter for better reliability."
+        class="my-1 h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+### Storage & Power Management
+
+Initially, we started with a single 3.5" internal HDD. I connected it using a
+SATA-to-USB adapter that drew power directly from the STB's USB port. However,
+we eventually decided to move two more HDDs that were originally in the main
+computer onto the NAS to centralize all our business data.
+
+As we added these extra drives, I realized the STB probably wouldn't be able to
+provide enough power to spin multiple HDDs at once. I was worried that the lack
+of power would either crash the system or hurt the performance of the drives. To
+prevent this, I decided to upgrade to **powered USB-to-SATA adapters** for the
+additional drives. These use their own external 12V power supplies, ensuring the
+system remains stable and the STB's internal components aren't overloaded.
+
+<div class="flex justify-center">
+    <Image
+        src={import("./images/powered-sata-to-usb-adapter.png")}
+        alt="A 3.5-inch SATA to USB adapter cable featuring an external 12V power input jack."
+        class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+### Software Configuration
+
+Since I bought the STB pre-rooted and with Armbian already installed, I was able
+to skip the burning and initial configuration steps. Instead of remoting into
+the device, I plugged the STB into a TV via HDMI and used a physical USB
+keyboard to interact with the terminal directly.
+
+1.  **Installing CasaOS**: Once I had terminal access, I ran the official
+    automated install script:
+    ```bash
+    curl -fsSL https://get.casaos.io | sudo bash
+    ```
+2.  **Mounting Storage**: I mounted the HDDs by simply plugging them in. Armbian
+    automatically detected and mounted them, and I was able to access the drives
+    immediately through CasaOS.
+3.  **Sharing Drives**: Using the CasaOS Web UI, I navigated to the drive
+    folders inside `/media/devmon/`, right-clicked them, and selected **Share**.
+    This instantly made them available via SMB on the network without having to
+    mess with the STB's internal storage partitions.
+
+<div class="flex justify-center">
+    <Image
+        src={import("./images/casaos-dashboard.png")}
+        alt="Screenshot of the CasaOS web dashboard"
+        class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+### Networking & Windows Integration
+
+To ensure the NAS was always reachable, I configured the STB with **static IP
+addresses** for both networks it connects to:
+
+- **Business Network (Ethernet):** `192.168.30.100`
+- **Home Network (Wi-Fi):** `192.168.1.30`
+
+This setup is incredibly convenient. I can manage the server from my laptop on
+the home Wi-Fi without having to physically plug into the business switch.
+
+#### How to Map the Drives in Windows
+
+Once the SMB shares were set up in CasaOS, I mapped them as network drives on
+all business computers:
+
+1. Open **File Explorer** and right-click on **This PC**.
+2. Select **Map network drive**.
+    <div class="flex justify-center">
+        <Image
+            src={import("./images/map-network-drive/thispc-context-menu.png")}
+            alt="Screenshot of the Windows File Explorer context menu, highlighting the 'Map network drive' option under This PC."
+            class="h-auto w-full max-w-sm rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+    </div>
+3. In the **Folder** path, type the NAS IP: `\\192.168.30.100`.
+    <div class="flex justify-center">
+        <Image
+            src={import("./images/map-network-drive/dialog.png")}
+            alt="Screenshot of the Windows Map Network Drive dialog showing the IP address path."
+            class="h-auto w-full max-w-xl rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+    </div>
+4. Click **Browse** to see the available shared drives and select the one you
+   want.
+    <div class="flex justify-center">
+        <Image
+            src={import("./images/map-network-drive/browse.png")}
+            alt="Screenshot of the 'Browse for Folder' window showing the detected SMB share folders on the STB server."
+            class="h-auto w-full max-w-sm rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+    </div>
+5. Click **Finish**. (Repeat for additional drives as needed).
+
+#### Windows 11 "Insecure Guest" Fix
+
+Setting this up on Windows 10 was simple, but Windows 11 has stricter security
+policies that block guest access to local NAS devices. To get the drives to map
+correctly without authentication errors, I had to enable **SMB 1.0/CIFS File
+Sharing Support** in Windows Features and run the following commands in
+**PowerShell (Admin)**:
+
+```powershell
+# Enable insecure guest logons to allow access to the local SMB share
+Set-SmbClientConfiguration -EnableInsecureGuestLogons $true -Force
+Set-SmbClientConfiguration -RequireSecuritySignature $false -Force
+```
+
+## Result
+
+The result? My dad was impressed, and we now use it daily to share design files
+instantly across the shop. It might not look fancy, but its very helpful.
+
+<div class="flex justify-center">
+    <Image
+        src={import("./cover.jpg")}
+        alt="The final NAS setup mounted in place on the wall, showing the HG680P STB and hard drives as they are used daily in the shop."
+        class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+## Challenges & Known Issues
+
+While the system works well enough for our daily needs, it still had a few small
+issues:
+
+1.  **Connectivity Drops**: Occasionally, the network shares become inaccessible
+    from Windows even though the STB is still online and can access the drives.
+    A reboot of the STB usually resolves the issue.
+2.  **Mounting Errors** **(Solved)**: Initially, the system would sometimes fail
+    to mount all external HDDs during a reboot, requiring multiple restarts to
+    correctly mount all HDDs.
+
+    **Fix**: We discovered the problem was the **cheap SATA-to-USB adapter** we
+    were using. Even though it was plugged into a power adapter, it likely
+    wasn't drawing enough power (or any at all) to spin up the HDDs reliably.
+    Once we swapped it for a **higher-quality adapter (specifically designed for
+    3.5" desktop drives)**, the mounting errors disappeared, and everything now
+    works flawlessly on the first try.
+
+    <div class="flex justify-center">
+        <Image
+            src={import("./images/cheap-vs-expensive-adapter.png")}
+            alt="Side-by-side comparison of a cheap powered USB-SATA adapter versus an expensive, high-quality powered adapter."
+            class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+    </div>
+
+    **The Casualty**: Unfortunately, **one of the 3.5" HDDs died** shortly after
+    I swapped to the better adapter. It worked initially during testing, but
+    then suddenly stopped spinning and won't turn on at all now. While I'm not
+    exactly sure what the cause is, it's likely that the previous stress of
+    being underpowered by the cheap adapter eventually caused the HDD to fail.
+
+    > **⚠️ CAUTION** - **Warning for Readers:**  
+    > Mechanical hard drives are extremely sensitive to power fluctuations. If
+    > you notice mounting errors or "clicking" sounds, **stop using the drive
+    > immediately** until you have a verified, high-quality power source. A $5
+    > cheap adapter can easily result in the permanent loss of a $50+ hard drive
+    > and all the data on it.
+
+    <div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+        <Image
+            src={import("./images/before.png")}
+            alt="Before: Wall-mounted server setup..."
+            class="h-auto w-full max-w-4xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+        <Image
+            src={import("./images/after.png")}
+            alt="After: Current wall-mounted setup..."
+            class="h-auto w-full max-w-4xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+        />
+    </div>
+
+## Future Enhancements: The Print Server
+
+My next plan for this project is to expand the STB's functionality by turning it
+into a **dedicated print server** while it continues to run as a NAS.
+
+Currently, our USB printers are connected to a "main" computer and shared over
+the network from there. The downside is that the main computer must remain
+powered on for any other computer to print. By connecting the printers directly
+to the STB and configuring **CUPS (Common Unix Printing System)**, I plan to
+make the printers available to the entire network 24/7.
+
+### Epson L1210 Experiment (May 1, 2025)
+
+As an experiment to see if this was even possible, I tried setting up one of our
+printer. The printer that I decided to use was the **Epson L1210** because I
+think that it was the simplest. I initially searched for "epson l1210 driver
+linux" and only found x86 drivers on the official site. However, I tried using
+the `printer-driver-gutenprint` package. Even though it didn't have the specific
+driver for the L1210, it did have a driver for the **L1110**, which is a similar
+model.
+
+<div class="flex justify-center">
+    <Image
+        src={import("./images/cups-screenshot.png")}
+        alt="Screenshot of the CUPS (Common Unix Printing System) web interface showing an Epson L1210 printer successfully configured using the Epson L1110 Series Inkjet Printer Driver (ESC/P-R)"
+        class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+The test worked! I was able to print from the STB, proving that the setup was
+possible. After the experiment, I moved the printer back to the main computer
+for business use, but this gave me the confidence to start looking into a
+permanent solution for all our printers.
+
+<div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+    <Image
+        src={import("./images/test-print/armbian.jpg")}
+        alt="Debian/CUPS test page showing the successful use of the L1110 driver on an L1210 printer."
+        class="h-auto w-full max-w-4xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+    <Image
+        src={import("./images/test-print/win10.jpg")}
+        alt="Windows test page proving the printer can be used over the network via the STB print server."
+        class="h-auto w-full max-w-4xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+</div>
+
+### Ongoing Driver Research (As of Dec 29, 2025)
+
+Recently, I've been checking out the official support for all our printers to
+see if I can move away from generic "similar model" drivers and use official
+ones for better reliability. Here is what I discovered:
+
+- **Epson L1210:** Even though the Gutenprint driver works, I still wanted to
+  find an official one. The Epson site does list an ARM driver, but it appears
+  to be for
+  [32-bit ARM](https://download-center.epson.com/softwares/?device_id=L1210+Series&region=ID&os=DEBARM32&language=en),
+  so I haven't tested it yet. Searching for the
+  [ARM64 driver](https://download-center.epson.com/softwares/?device_id=L1210+Series&region=ID&os=DEBARM64&language=en)
+  shows nothing at all.
+
+Luckily, things look way better for the other printers. I found that official
+`arm64` drivers actually do exist for these two:
+
+- **Epson L3110:**
+  [Official ARM64 Driver](https://download-center.epson.com/softwares/?device_id=L3110+Series&region=ID&os=DEBARM64&language=en)
+- **Epson L1455:**
+  [Official ARM64 Driver](https://download-center.epson.com/softwares/?device_id=L1455+Series&region=ID&os=DEBARM64&language=en)
+
+Both of those pages show two different downloads. I did a bit of research into
+which one we actually need:
+
+- `Epson Inkjet Printer Driver (ESC/P-R) for Linux`: This is the actual driver
+  that CUPS needs to talk to the printer. This is the one I'll be testing next.
+- `Epson Scan2 Source Code`: This is for the scanning functionality. Since
+  getting the printers to work is the main goal, I'm focusing on that first, but
+  I will be looking into the scanners once the printing is stable.
