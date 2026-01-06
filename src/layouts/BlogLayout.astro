@@ -12,7 +12,7 @@ type Props = CollectionEntry<"posts">["data"];
 const { title, description, date, updated, image, color } = Astro.props;
 
 const url = getBaseUrl();
-const imageUrl = `${url}${Astro.url.pathname}${image.src}`;
+const imageUrl = `${url}${image.src}`;
 ---
 
 <Head>
