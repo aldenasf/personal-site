@@ -37,6 +37,12 @@ html {
     .prose blockquote {
         font-style: normal !important;
     }
+
+    pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
 }
 
 .tippy-box[data-theme="default"] {
