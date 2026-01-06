@@ -11,7 +11,8 @@ const posts = defineCollection({
             // image: z.preprocess((i) => `${import.meta.env.BASE_URL}${i}`, z.string()),
             image: image(),
             color: z.string().optional(),
-            pinned: z.any().optional(),
+            pinned: z.any().optional().default(false),
+            hidden: z.boolean().optional().default(false),
         }),
 });
 

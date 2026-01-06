@@ -1,7 +1,7 @@
 ---
 title: "Turning an old TV Box into a Family Business NAS"
 description:
-    "Repurposing an old $15 Android TV box into a functional NAS for my family's
+    "Repurposing an old Android TV box into a functional NAS for my family's
     printing business."
 date: "Dec 30, 2024"
 updated: "Jan 06, 2025"
@@ -28,37 +28,77 @@ I didn't wanna deal with the headache of rooting it myself yet, so I bought one
 that already had Armbian installed. My goal wasn't just to play around with it.
 I wanted to see if I could actually make it useful for the business.
 
-- **Hardware:** IndiHome HG680P.
-- **OS & Software:** Armbian + CasaOS (for a user-friendly web UI).
-- **Storage:** Multiple external hard drives repurposed from the business.
-- **Networking:** Connected via Ethernet to our existing network switch.
+- **Hardware**: IndiHome HG680P.
+- **OS & Software**: Armbian + CasaOS (for a user-friendly web UI).
+- **Storage**: Multiple external hard drives repurposed from the business.
+- **Networking**: Connected via Ethernet to our existing network switch.
 
-<div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+<div class="flex flex-col items-center lg:grid lg:grid-cols-2 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
     <Image
         src={import("./images/stb-top.png")}
-        alt="Before: Wall-mounted server setup in its original state, using multiple cheap SATA adapters to power several hard drives."
+        alt="STB top view."
         class="h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
     />
     <Image
         src={import("./images/stb-bottom.png")}
-        alt="After: Current wall-mounted setup showing the remaining hard drives after one failure, now powered by a single high-quality, external-power SATA adapter for better reliability."
+        alt="STB bottom view, showing specifications."
+        class="my-1 h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+    <Image
+        src={import("./images/stb-side.png")}
+        alt="STB side view, showing 2x USB 2.0 ports."
+        class="h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
+    />
+    <Image
+        src={import("./images/stb-back.png")}
+        alt="STB back view, showing other ports."
         class="my-1 h-auto w-full max-w-xl min-w-0 flex-1 rounded-xl border-2 border-neutral-600 shadow-md"
     />
 </div>
 
+### Hardware Technical Specifications
+
+The **IndiHome HG680P** is a popular choice for these projects because it's
+cheap but capable enough for basic file sharing.
+
+- **CPU**: Amlogic Meson GXL S905X (Quad-core 1.5GHz, ARMv8 architecture)
+- **RAM**: 2GB DDR3
+- **Internal Storage**: 8GB eMMC
+- **Ports**:
+    - 2x USB 2.0 ports (data transfer is capped at USB 2.0 speeds, regardless of
+      hub type)
+    - 1x RJ45
+    - 1x HDMI
+    - 1x AV Out
+    - 1x Digital Audio (SPDIF)
+    - 1x Power (DC 12V)
+    - 1x MicroSD slot. (located on the left side of the STB)
+- **Networking**:
+    - **Ethernet (eth0)**: 10/100 Mbps
+    - **Wireless (wlan0)**: Realtek RTL8189FS IEEE 802.11bgn (2.4 GHz)
+
 ### Storage & Power Management
 
-Initially, we started with a single 3.5" internal HDD. I connected it using a
+Initially, we started with a single 2.5" internal HDD. I connected it using a
 SATA-to-USB adapter that drew power directly from the STB's USB port. However,
 we eventually decided to move two more HDDs that were originally in the main
 computer onto the NAS to centralize all our business data.
 
-As we added these extra drives, I realized the STB probably wouldn't be able to
-provide enough power to spin multiple HDDs at once. I was worried that the lack
-of power would either crash the system or hurt the performance of the drives. To
-prevent this, I decided to upgrade to **powered USB-to-SATA adapters** for the
-additional drives. These use their own external 12V power supplies, ensuring the
-system remains stable and the STB's internal components aren't overloaded.
+As we eventually added two more drives to the NAS: a 2.5" external HDD and a
+3.5" internal HDD, I realized the STB wouldn't be able to provide enough power
+to spin multiple HDDs at once, especially with the 2.5" drives drawing power
+from the USB port. I was worried that the lack of power would either crash the
+system or hurt the performance of the drives. To ensure the system remained
+stable and the STB's internal components weren't overloaded, I decided to
+upgrade to high-quality powered USB-to-SATA adapters for the internal drives.
+These use their own external 12V power supplies, allowing the USB hub to be used
+solely for data transfer.
+
+> Note: Stability is critical in a business environment. I <mark>highly
+> recommend using powered adapters</mark> for internal HDDs to ensure consistent
+> power. I'll explain more about why this is so important in the
+> [Challenges](#challenges--known-issues) section, where I talk about the
+> permanent hardware failure I experienced.
 
 <div class="flex justify-center">
     <Image
@@ -101,8 +141,8 @@ keyboard to interact with the terminal directly.
 To ensure the NAS was always reachable, I configured the STB with **static IP
 addresses** for both networks it connects to:
 
-- **Business Network (Ethernet):** `192.168.30.100`
-- **Home Network (Wi-Fi):** `192.168.1.30`
+- **Business Network (Ethernet)**: `192.168.30.100`
+- **Home Network (Wi-Fi)**: `192.168.1.30`
 
 This setup is incredibly convenient. I can manage the server from my laptop on
 the home Wi-Fi without having to physically plug into the business switch.
@@ -112,7 +152,7 @@ the home Wi-Fi without having to physically plug into the business switch.
 Once the SMB shares were set up in CasaOS, I mapped them as network drives on
 all business computers:
 
-1. Open **File Explorer** and right-click on **This PC**.
+1. Open **File Explorer** and Right-click on **This PC**.
 2. Select **Map network drive**.
     <div class="flex justify-center">
         <Image
@@ -157,7 +197,8 @@ Set-SmbClientConfiguration -RequireSecuritySignature $false -Force
 ## Result
 
 The result? My dad was impressed, and we now use it daily to share design files
-instantly across the shop. It might not look fancy, but its very helpful.
+instantly across the shop. It might not look fancy, but it is extremely helpful
+for our workflow.
 
 <div class="flex justify-center">
     <Image
@@ -166,6 +207,29 @@ instantly across the shop. It might not look fancy, but its very helpful.
         class="h-auto w-full max-w-4xl rounded-xl border-2 border-neutral-600 shadow-md"
     />
 </div>
+
+By repurposing what we already had and making a few strategic purchases, we
+built a reliable NAS for a fraction of the cost of a commercial unit.
+
+<div class="text-center">
+    <h3>Project Cost Breakdown</h3>
+</div>
+
+| Item                                     | Status        | Cost (<abbr title="Indonesian Rupiah">IDR</abbr>) | Cost (<abbr title="United States Dollar">USD</abbr>) |
+| :--------------------------------------- | :------------ | :------------------------------------------------ | ---------------------------------------------------- |
+| IndiHome HG680P (Pre-rooted)             | Purchased     | Rp. 220.000                                       | ~$13.75                                              |
+| High-Quality Powered SATA-to-USB Adapter | Purchased     | Rp. 150.000                                       | ~$9.35                                               |
+| High-Quality Powered SATA-to-USB Adapter | Already Owned | -                                                 |                                                      |
+| USB Hub (1x USB 3.0 2x USB 2.0)          | Purchased     | Rp. 60.000                                        | ~$3.75                                               |
+| 2.5" External HDD                        | Repurposed    | -                                                 |                                                      |
+| 2.5" Internal HDD                        | Repurposed    | -                                                 |                                                      |
+| 3.5" Internal HDD                        | Repurposed    | -                                                 |                                                      |
+| Total Investment                         |               | Rp. 430.000                                       | ~$26.85                                              |
+
+> Note: Stability is key for a business environment. Both adapters used in this
+> build are the high-quality powered versions. I <mark>highly recommend using
+> powered adapters</mark> for all HDDs to prevent the kind of power-related
+> hardware failure I experienced earlier.
 
 ## Challenges & Known Issues
 
@@ -200,12 +264,12 @@ issues:
     exactly sure what the cause is, it's likely that the previous stress of
     being underpowered by the cheap adapter eventually caused the HDD to fail.
 
-    > **⚠️ CAUTION** - **Warning for Readers:**  
+    > **⚠️ CAUTION** - **Warning for Readers**:  
     > Mechanical hard drives are extremely sensitive to power fluctuations. If
-    > you notice mounting errors or "clicking" sounds, **stop using the drive
-    > immediately** until you have a verified, high-quality power source. A $5
-    > cheap adapter can easily result in the permanent loss of a $50+ hard drive
-    > and all the data on it.
+    > you notice mounting errors or "clicking" sounds, <mark>stop using the
+    > drive immediately</mark> until you have a verified, high-quality power
+    > source. A $5 cheap adapter can easily result in the permanent loss of a
+    > $50+ hard drive and all the data on it.
 
     <div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
         <Image
@@ -220,6 +284,36 @@ issues:
         />
     </div>
 
+## Resources & Troubleshooting Links
+
+If you are setting up an HG680P or similar as a dedicated NAS, these links cover
+the essential software and the specific Windows fixes mentioned in this post.
+
+### Core Software
+
+- **[CasaOS Official Website](https://casaos.io/)**: For the dashboard
+  installation and hardware monitoring features.
+- **[Armbian Linux](https://www.armbian.com/)**: The base operating system for
+  the STB. Useful if you need to look up terminal commands for storage
+  management.
+
+### Windows 11 Connectivity
+
+- **[Microsoft Docs: Guest access in SMB2/3](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/guest-access-in-smb2-is-disabled-by-default)**:
+  Official explanation on why Windows 11 blocks guest access by default. This
+  security policy affects all network sharing, including shared folders and
+  printers between Windows computers.
+
+### Community & Tutorials
+
+- **[NanangMRK - STB NAS Tutorial](https://www.youtube.com/watch?v=hIpA51p09iY)**:
+  **(Language: Bahasa Indonesia)** The original video that inspired this build.
+- **[Armbian Forums](https://forum.armbian.com/)**: The best place to
+  troubleshoot if your USB drives aren't mounting or if the STB is having
+  network drops.
+
+---
+
 ## Future Enhancements: The Print Server
 
 My next plan for this project is to expand the STB's functionality by turning it
@@ -231,7 +325,7 @@ powered on for any other computer to print. By connecting the printers directly
 to the STB and configuring **CUPS (Common Unix Printing System)**, I plan to
 make the printers available to the entire network 24/7.
 
-### Epson L1210 Experiment (May 1, 2025)
+### Epson L1210 Experiment (May 1, 2024)
 
 As an experiment to see if this was even possible, I tried setting up one of our
 printer. The printer that I decided to use was the **Epson L1210** because I
@@ -273,7 +367,7 @@ Recently, I've been checking out the official support for all our printers to
 see if I can move away from generic "similar model" drivers and use official
 ones for better reliability. Here is what I discovered:
 
-- **Epson L1210:** Even though the Gutenprint driver works, I still wanted to
+- **Epson L1210**: Even though the Gutenprint driver works, I still wanted to
   find an official one. The Epson site does list an ARM driver, but it appears
   to be for
   [32-bit ARM](https://download-center.epson.com/softwares/?device_id=L1210+Series&region=ID&os=DEBARM32&language=en),
@@ -284,9 +378,9 @@ ones for better reliability. Here is what I discovered:
 Luckily, things look way better for the other printers. I found that official
 `arm64` drivers actually do exist for these two:
 
-- **Epson L3110:**
+- **Epson L3110**:
   [Official ARM64 Driver](https://download-center.epson.com/softwares/?device_id=L3110+Series&region=ID&os=DEBARM64&language=en)
-- **Epson L1455:**
+- **Epson L1455**:
   [Official ARM64 Driver](https://download-center.epson.com/softwares/?device_id=L1455+Series&region=ID&os=DEBARM64&language=en)
 
 Both of those pages show two different downloads. I did a bit of research into
