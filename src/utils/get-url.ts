@@ -1,8 +1,14 @@
-// src/utils/get-url.ts
 export const getBaseUrl = () => {
-    // Check for Vercel's system variable (provided at build/runtime)
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    // 1. Check for the specific branch URL (e.g., aldenasf-git-dev...)
+    if (process.env.VERCEL_BRANCH_URL) {
+        return `https://${process.env.VERCEL_BRANCH_URL}`;
+    }
 
-    // Fallback for local development
+    // 2. Check for the generic Vercel deployment URL
+    if (process.env.VERCEL_URL) {
+        return `https://${process.env.VERCEL_URL}`;
+    }
+
+    // 3. Localhost fallback
     return `http://localhost:4321`;
 };
