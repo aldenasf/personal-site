@@ -11,7 +11,7 @@ type Props = CollectionEntry<"posts">["data"];
 const { title, description, date, updated, image, color } = Astro.props;
 
 const url = Astro.url.href;
-const imageUrl = `${Astro.url.origin}${image}`;
+const imageUrl = `${Astro.url.origin}${image.src}`;
 ---
 
 <Head>
