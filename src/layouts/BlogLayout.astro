@@ -4,14 +4,15 @@ import Head from "./Head.astro";
 import Body from "./Body.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import { getBaseUrl } from "../utils/get-url";
 import type { CollectionEntry } from "astro:content";
 
 type Props = CollectionEntry<"posts">["data"];
 
 const { title, description, date, updated, image, color } = Astro.props;
 
-const url = Astro.url.href;
-const imageUrl = `${Astro.url.origin}${image.src}`;
+const url = getBaseUrl();
+const imageUrl = `${url}${Astro.url.pathname}${image.src}`;
 ---
 
 <Head>
