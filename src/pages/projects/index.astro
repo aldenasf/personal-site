@@ -4,7 +4,9 @@ import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import type { Props } from "../../components/BlogCard.astro";
 
-const posts = (await getCollection("posts")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts = (await getCollection("posts", ({ data }) => data.hidden !== true)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
 const pinnedPostIndex = posts.findIndex((post) => post.data?.pinned == true);
 

@@ -5,7 +5,11 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
-    const posts = await getCollection("posts");
+    const posts = await getCollection("posts", ({ data }) => {
+        // allow accessing hidden posts in dev
+        return import.meta.env.DEV || data.hidden !== true;
+    });
+
     return posts.map((post: any) => ({
         params: { slug: getCleanSlug(post.slug) },
         props: post,
