@@ -1,0 +1,15 @@
+---
+import Layout from "./Layout.astro";
+
+const page = Astro.props.frontmatter.page;
+---
+
+<Layout {page}>
+    <div class="mx-auto my-10 flex max-w-screen flex-col justify-center px-4 lg:max-w-4xl lg:px-0">
+        <article
+            class="prose prose-base prose-neutral prose-invert lg:prose-lg max-w-none p-4 md:p-8 lg:max-w-5xl lg:p-0"
+        >
+            <slot />
+        </article>
+    </div>
+</Layout>
