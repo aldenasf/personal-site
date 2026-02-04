@@ -8,21 +8,23 @@ import type { Links } from "../components/Navbar.astro";
 
 interface Props {
     page?: keyof typeof Links;
+    title?: string;
 }
 
-const { page } = Astro.props;
+const { page, title } = Astro.props;
+const pageTitle = (title ? title + " - " : "") + " aldenasf";
 ---
 
 <Head>
-    <title>aldenasf</title>
+    <title>{pageTitle}</title>
 
-    <meta property="og:title" content="aldenasf" />
+    <meta property="og:title" content={pageTitle} />
     <meta
         property="og:description"
         content="Self-taught developer since 2020 and Software Engineering (RPL) student from Indonesia at SMKN 1 Jenangan. Building with TypeScript, Node.js, and Astro. Exploring hardware networking, game modding, and automation."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://aldenasf.github.io/" />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:locale" content="en" />
     <meta property="og:image" content="https://avatars.githubusercontent.com/u/63831735?v=4" />
 

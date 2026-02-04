@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
 page: "about"
+title: "About Me"
 ---
 
 # About Me
