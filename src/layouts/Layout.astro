@@ -12,7 +12,8 @@ interface Props {
 }
 
 const { page, title } = Astro.props;
-const pageTitle = (title ? title + " - " : "") + " aldenasf";
+// const pageTitle = (title ? title + " - " : "") + " aldenasf";
+const pageTitle = title || "aldenasf";
 ---
 
 <Head>
