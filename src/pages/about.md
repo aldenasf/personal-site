@@ -26,13 +26,21 @@ completely forgetting the time.
 I mainly work with TypeScript. My projects range from building websites using
 Astro and Tailwind to Discord bots with Node.js
 
-### Hardware & Networking
+### Networking
 
-Beyond the screen, I've also been getting into hardware and networking because I
-just think it's really cool. I enjoy the process of repurposing old devices to
-solve actual problems, like turning an old set-top-box into a NAS or setting up
-my own ~home~ bedroom server. These projects have been a great way for me to
-start exploring Linux and get more comfortable using Debian in a practical way.
+I've also been getting into hardware and networking because I just think it's
+really cool. I enjoy the process of repurposing old devices to solve actual
+problems, like turning an old set-top-box into a NAS or setting up my own ~home~
+bedroom server. These projects have been a great way for me to start exploring
+Linux and get more comfortable using Debian in a practical way.
+
+### Electronics
+
+I'm currently trying to get myself into electronics, specifically projects that
+still involve coding. Right now, I'm working on a custom strobes module (like
+the ones on ambulances) that can be heavily customized via a web editor. I'm
+using an ESP32 as the controller. To control it, I built a web-based UI editor
+that lets you design the light pattern.
 
 ### Modding
 
@@ -48,14 +56,9 @@ or genre, and my interests tend to change from time to time. Sometimes I'll get
 into Vocaloid and listen to nothing else for weeks, or I’ll discover a single
 new song and keep it on repeat for an entire week straight.
 
-You can also check out my
-[Spotify](https://open.spotify.com/user/eef0ojnm2b3ozw0k2gr9ncohv) where I have
-a few playlists of the songs I listen to the most often.
-
 ### Gaming
 
-I’m not really into gaming anymore and rarely play anything on my own. It used
-to be a huge part of me, though. I spent a lot of time grinding ranks in CODM
-and even unlocked Damascus. Now, even though I finally have good hardware, I
-don't have much free time because of school. I only really play when I have a
-close friend to join me for a game I enjoy.
+I only really play games when I have someone to play with, but I dont really
+play much in my own free time anymore, unless I found a game that I really like
+which I can spend hours on at a time. But I don't really play as intensive as I
+used to be.
