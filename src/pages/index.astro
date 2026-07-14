@@ -6,7 +6,6 @@ import SkillContainer from "../components/SkillContainer.astro";
 import SkillCard from "../components/SkillCard.astro";
 import SocialCard from "../components/SocialCard.astro";
 
-import dockerLogo from "../assets/icons/docker.svg";
 import mongodbLogo from "../assets/icons/mongodb.svg";
 import { Icon } from "astro-icon/components";
 ---
@@ -27,8 +26,8 @@ import { Icon } from "astro-icon/components";
                     >Software Engineering (RPL) student</span
                 > from Indonesia at SMKN 1 Jenangan and a <span class="underline decoration-zinc-500 underline-offset-2"
                     >self-taught developer since 2020</span
-                >. I mostly do backend stuff like Discord bots, but I also enjoy exploring hardware networking, game
-                modding, and automation.
+                >. I mostly do server-side stuff like Discord bots, but I also enjoy exploring networking, game modding,
+                electronics, and tech stuff in general.
                 <!-- Most of my projects go unfinished because I get bored of them easily or I don't have the
                 time to continue them, so they never get published. I'm currently re-visiting fundamentals at school
                 while focusing on more advanced personal projects. -->
@@ -69,12 +68,33 @@ import { Icon } from "astro-icon/components";
             <SocialCard platform="Discord" username="aldenasf" url="https://discord.com/users/529424782438170679">
                 <Icon class="mr-2 text-2xl" name="fa6-brands:discord" />
             </SocialCard>
-            <SocialCard platform="X" username="aldenasf" url="https://x.com/aldenasf">
-                <Icon class="mr-2 text-2xl" name="fa6-brands:x-twitter" />
+            <SocialCard platform="AniList" username="aldenasf" url="https://anilist.co/user/aldenasf">
+                <div class="mr-2 text-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            fill="currentColor"
+                            d="M24 17.53v2.421c0 .71-.391 1.101-1.1 1.101h-5l-.057-.165L11.84 3.736c.106-.502.46-.788 1.053-.788h2.422c.71 0 1.1.391 1.1 1.1v12.38H22.9c.71 0 1.1.392 1.1 1.101zM11.034 2.947l6.337 18.104h-4.918l-1.052-3.131H6.019l-1.077 3.131H0L6.361 2.948h4.673zm-.66 10.96l-1.69-5.014l-1.541 5.015h3.23z"
+                        ></path>
+                    </svg>
+                </div>
             </SocialCard>
         </section>
         <h2 id="projects" class="mr-6 py-6 text-2xl font-semibold">Projects</h2>
         <section class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ProjectCard
+                author="aldenasf"
+                repo="unicode-spoofer"
+                description="📝 Replace Latin characters with visually similar Unicode alternatives from other scripts"
+                language="TypeScript"
+                url="https://github.com/aldenasf/unicode-spoofer"
+            /><ProjectCard
+                author="aldenasf"
+                repo="personal-site"
+                description="🚀 personal website"
+                language="Astro"
+                url="https://github.com/aldenasf/personal-site"
+            />
             <ProjectCard
                 author="AlkaUtilities"
                 repo="metal-pipe-player"
@@ -88,20 +108,6 @@ import { Icon } from "astro-icon/components";
                 description="silly general purpose discord bot"
                 language="TypeScript"
                 url="https://github.com/AlkaUtilities/carbon"
-            />
-            <ProjectCard
-                author="aldenasf"
-                repo="unicode-spoofer"
-                description="A website to replaces regular letters with visually similar alternatives"
-                language="JavaScript"
-                url="https://github.com/aldenasf/unicode-spoofer"
-            />
-            <ProjectCard
-                author="aldenasf"
-                repo="unicode-spoofer-astro"
-                description="📝 Replace Latin characters with visually similar Unicode alternatives from other scripts"
-                language="TypeScript"
-                url="https://github.com/aldenasf/unicode-spoofer-astro"
             />
         </section>
         <h2 class="mr-6 py-6 text-2xl font-semibold">Tech Stack</h2>
@@ -123,9 +129,9 @@ import { Icon } from "astro-icon/components";
                     url="https://python.org/"
                 />
                 <SkillCard
-                    text="C#"
-                    icon="https://upload.wikimedia.org/wikipedia/commons/d/d2/C_Sharp_Logo_2023.svg"
-                    url="https://en.wikipedia.org/wiki/C_Sharp_(programming_language)"
+                    text="Discord.js"
+                    icon="https://avatars.githubusercontent.com/u/26492485?s=200&v=4"
+                    url="https://discord.js.org/"
                 />
             </SkillContainer>
             <SkillContainer text="Frontend">
@@ -151,12 +157,9 @@ import { Icon } from "astro-icon/components";
                 />
                 <SkillCard
                     text="Tailwind CSS"
-                    icon="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
+                    icon="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"
                     url="https://tailwindcss.com/"
                 />
-            </SkillContainer>
-            <SkillContainer text="Databases">
-                <SkillCard text="MongoDB" icon={mongodbLogo} url="https://www.mongodb.com/" />
             </SkillContainer>
             <SkillContainer text="Tools">
                 <SkillCard
@@ -168,28 +171,6 @@ import { Icon } from "astro-icon/components";
                     text="Git"
                     icon="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.svg"
                     url="https://git-scm.com/"
-                />
-                <SkillCard
-                    text="Linux"
-                    icon="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
-                    title="No specific distros. Just Linux in general."
-                />
-                <SkillCard
-                    text="dnSpy"
-                    icon="https://dnspy.org/wp-content/uploads/2024/10/dnspy.png"
-                    url="https://dnspy.org/"
-                />
-            </SkillContainer>
-            <SkillContainer text="Other">
-                <SkillCard
-                    text="Discord.js"
-                    icon="https://avatars.githubusercontent.com/u/26492485?s=200&v=4"
-                    url="https://discord.js.org/"
-                />
-                <SkillCard
-                    text="Arduino"
-                    icon="https://cdn.arduino.cc/header-footer/prod/assets/favicon-arduino/favicon.ico"
-                    url="https://www.arduino.cc/"
                 />
             </SkillContainer>
         </section>
