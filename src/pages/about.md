@@ -6,7 +6,7 @@ title: "About Me"
 
 # About Me
 
-Hi! I'm alden, a 16-year-old Software Engineering student and a self-taught
+Hi! I'm alden, a 17-year-old Software Engineering student and a self-taught
 developer from Indonesia. I'm a big fan of the "learn by doing" philosophy. If
 I'm curious about a library or a piece of hardware, I'll usually build something
 with it instead of just watching a YouTube video about it.
